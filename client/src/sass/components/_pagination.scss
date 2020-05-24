@@ -1,0 +1,87 @@
+.pages {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 10px auto;
+	width: 300px;
+	user-select: none;
+
+	.disabled-pagination {
+		visibility: hidden;
+	}
+
+	.pagination {
+		cursor: pointer;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		height: 30px;
+		width: 30px;
+		transition: background-color 0.2s;
+	}
+
+	.pagination:hover {
+		background-color: rgba($dark, 0.2);
+	}
+
+	.page-container {
+		display: flex;
+
+		.page,
+		input {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 30px;
+			height: 30px;
+		}
+
+		.selected {
+			color: $white;
+			background-color: $dark;
+		}
+
+		// Page number input
+		.selectable {
+			cursor: pointer;
+			transition: background-color 0.2s;
+		}
+
+		.selectable:hover {
+			background-color: rgba($dark, 0.2);
+		}
+
+		input {
+			outline: none;
+			border-width: 0;
+			text-align: center;
+			color: $white;
+			background-color: lighten($dark, 10%);
+			transition: background-color 0.2s;
+		}
+
+		input:focus {
+			background-color: lighten($dark, 20%);
+		}
+
+		::placeholder {
+			/* Chrome, Firefox, Opera, Safari 10.1+ */
+			color: darken(white, 20%);
+			opacity: 1; /* Firefox */
+		}
+
+		:-ms-input-placeholder {
+			/* Internet Explorer 10-11 */
+			color: darken(white, 20%);
+		}
+
+		::-ms-input-placeholder {
+			/* Microsoft Edge */
+			color: darken(white, 20%);
+		}
+
+		::-webkit-inner-spin-button {
+			appearance: none;
+		}
+	}
+}

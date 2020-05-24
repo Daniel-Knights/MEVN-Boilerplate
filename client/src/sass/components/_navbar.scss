@@ -1,0 +1,24 @@
+header {
+	width: 100%;
+	height: 50px;
+	position: fixed;
+	top: 0;
+	z-index: 100;
+	background: linear-gradient(to right, $secondary, rgb(255, 153, 0));
+
+	nav {
+		display: flex;
+		align-items: center;
+		justify-content: space-evenly;
+		width: 33%;
+		height: 100%;
+
+		a {
+			transition: color 0.1s;
+		}
+
+		a:hover {
+			color: lighten($dark, 20%);
+		}
+	}
+}

@@ -1,0 +1,29 @@
+.post {
+	position: relative;
+	border: 1px solid $primary;
+	background-color: $light;
+	padding: 10px 10px 30px 10px;
+	margin-bottom: 15px;
+
+	.created-at {
+		position: absolute;
+		top: 0;
+		left: 0;
+		padding: 5px 15px 5px 15px;
+		background-color: $dark;
+		color: $white;
+		font-size: 13px;
+	}
+
+	.text {
+		font-size: 22px;
+		font-weight: 700;
+		margin-bottom: 0;
+	}
+
+	i {
+		cursor: pointer;
+		position: absolute;
+		right: 10px;
+	}
+}
