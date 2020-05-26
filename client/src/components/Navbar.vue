@@ -8,9 +8,10 @@
             <router-link v-if="!getAuthenticated" to="/signup"
                 >Signup</router-link
             >
-            <router-link v-else to="/" @click.native="logout"
+            <router-link v-if="getAuthenticated" to="/" @click.native="logout"
                 >Logout</router-link
             >
+            <router-link v-if="getAuthenticated" to="/photos">Photos</router-link>
         </nav>
     </header>
 </template>
