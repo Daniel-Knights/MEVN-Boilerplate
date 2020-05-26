@@ -30,7 +30,7 @@ In `server/routes/api/auth.js` and `server/routes/api/posts.js`, inside the coll
 return client.db("vue_express").collection("users");
 ```
 
-For the photo page to work, go to [Pixabay](https://pixabay.com/accounts/register/) and register for an account. Then go to the [docs page](https://pixabay.com/api/docs/) copy your given API key and replace ```<API_KEY>``` in the Axios request of the photos page. Else, you can set up your own backend solution for photos and the frontend should fit to suit.
+For the photo page to work, go to [Pixabay](https://pixabay.com/accounts/register/) and register for an account. Then go to the [docs page](https://pixabay.com/api/docs/), copy your given API key and replace ```<API_KEY>``` in the Axios request of the photos page. Else, you can set up your own backend solution for photos and the frontend should fit to suit.
 
 Then it will be available at http://localhost:8080.
 
