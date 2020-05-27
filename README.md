@@ -100,7 +100,7 @@ Then from your terminal:
 
 ```bash
 heroku login
-heroku create <!your-app-name>
+heroku create <your-app-name>
 ```
 
 Then go to https://dashboard.heroku.com/apps click on your app, click 'deploy', choose the GitHub deployment method and follow the instructions.
