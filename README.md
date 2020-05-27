@@ -6,7 +6,7 @@ Includes Heroku deployment walkthrough.
 
 Requires manually setting up a [MongoDB](https://www.mongodb.com) database.
 
-[Demo](https://vue-express-js.herokuapp.com/)
+[Demo](https://mevn-js.herokuapp.com/)
 
 ## From boilerplate
 

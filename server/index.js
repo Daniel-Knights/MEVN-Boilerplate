@@ -1,11 +1,15 @@
 const express = require("express");
 const cors = require("cors");
+const compression = require("compression");
+const helmet = require("helmet");
 
 const app = express();
 
 // Middleware
 app.use(express.json());
 app.use(cors());
+app.use(compression()); // Enable deflate/gzip
+app.use(helmet()); // Protect HTTP headers
 
 // Routes
 app.use("/api/posts", require("./routes/api/posts"));
