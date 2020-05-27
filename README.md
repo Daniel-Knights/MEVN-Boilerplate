@@ -43,7 +43,7 @@ Then it will be available at http://localhost:8080.
 ```bash
 npm init
 
-npm i express cors mongodb bcryptjs jsonwebtoken -D nodemon
+npm i express cors mongodb bcryptjs jsonwebtoken compression helmet -D nodemon
 ```
 
 In `package.json` replace
@@ -110,6 +110,8 @@ Then go to https://dashboard.heroku.com/apps click on your app, click 'deploy', 
 If you've chosen automatic GitHub deployment on Heroku and something isn't working, try manually deploying instead, sometimes the automatic deployment can act a little strange.
 
 In MongoDB Atlas go to network access and allow IP addresses from anywhere.
+
+Make sure you run `npm run build` in `/client` before deploying or your changes won't be served.
 
 If you're having trouble with Sass, make sure to install [Live Sass Compiler](https://marketplace.visualstudio.com/items?itemName=ritwickdey.live-sass) (if using VSCode, otherwise consult the [docs](https://sass-lang.com/)) and configure your settings.json to include this:
 
