@@ -105,6 +105,8 @@ heroku create <your-app-name>
 
 Then go to https://dashboard.heroku.com/apps click on your app, click 'deploy', choose the GitHub deployment method and follow the instructions.
 
+Also, go to your apps settings and set a config var with a key of `NODE_ENV` and value of `production`.
+
 ## Troubleshooting
 
 If you've chosen automatic GitHub deployment on Heroku and something isn't working, try manually deploying instead, sometimes the automatic deployment can act a little strange.
