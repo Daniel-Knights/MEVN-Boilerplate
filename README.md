@@ -13,16 +13,16 @@ Requires manually setting up a [MongoDB](https://www.mongodb.com) database.
 ```bash
 npm i
 
-npm run dev
-
 cd client
 
 npm i
 
-npm run serve
+cd ..
+
+npm run dev
 ```
 
-In `server/config/default.json` add your MongoDB connection string.
+Create a `.env` file in your root directory and add `MONGO_URI=<your-mongodb-connection-string>`.
 
 In `server/routes/api/auth.js` and `server/routes/api/posts.js`, inside the collection functions, replace "vue_express" with your database name:
 
@@ -43,7 +43,7 @@ Then it will be available at http://localhost:8080.
 ```bash
 npm init
 
-npm i express cors mongodb bcryptjs jsonwebtoken compression helmet -D nodemon
+npm i express cors mongodb concurrently dotenv bcryptjs jsonwebtoken compression helmet -D nodemon
 ```
 
 In `package.json` replace
@@ -58,8 +58,10 @@ with
 
 ```json
 "scripts": {
-    "start": "node server/index.js",
-    "dev": "nodemon server/index.js"
+    "start": "node server/server.js",
+    "nodemon": "nodemon server/server.js",
+    "serve": "npm run serve --prefix client",
+    "dev": "concurrently \"npm run nodemon\" \"npm run serve\""
 },
 ```
 
@@ -73,14 +75,6 @@ vue create client
 cd client
 
 npm i axios vue-axios vue-outside-events vue-meta vue-lazyload
-```
-
-**Git**
-
-```bash
-git init
-git add . && git commit -m 'Initial commit'
-git push
 ```
 
 # Deploy to Heroku
@@ -111,7 +105,7 @@ Also, go to your apps settings and set a config var with a key of `NODE_ENV` and
 
 If you've chosen automatic GitHub deployment on Heroku and something isn't working, try manually deploying instead, sometimes the automatic deployment can act a little strange.
 
-In MongoDB Atlas go to network access and allow IP addresses from anywhere.
+In MongoDB Atlas go to network access and allow IP addresses from anywhere or add specific IP addresses if known.
 
 Make sure you run `npm run build` in `/client` before deploying or your changes won't be served.
 

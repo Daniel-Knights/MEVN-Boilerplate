@@ -4,7 +4,7 @@ const auth = require("../../middleware/auth");
 
 const router = express.Router();
 
-const config = require("../../config");
+const config = require("../../config/config");
 
 async function postsCollection() {
     const client = await config;

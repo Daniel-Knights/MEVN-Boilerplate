@@ -1,7 +1,6 @@
 const mongodb = require("mongodb");
-const keys = require("./default.json");
 
-const config = mongodb.MongoClient.connect(keys.mongoURI, {
+const config = mongodb.MongoClient.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });

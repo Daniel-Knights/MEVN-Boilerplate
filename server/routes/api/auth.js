@@ -1,13 +1,12 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const keys = require("../../config/default.json");
 const auth = require("../../middleware/auth");
 const ObjectID = require("mongodb").ObjectID;
 
 const router = express.Router();
 
-const config = require("../../config");
+const config = require("../../config/config");
 
 async function usersCollection() {
     const client = await config;
@@ -51,7 +50,7 @@ router.post("/login", async (req, res) => {
 
             jwt.sign(
                 { id: user._id },
-                keys.jwtSecret,
+                process.env.JWT_SECRET,
                 {
                     expiresIn: 3600
                 },
@@ -115,7 +114,7 @@ router.post("/signup", async (req, res) => {
                 .then(user => {
                     jwt.sign(
                         { id: user.ops[0]._id },
-                        keys.jwtSecret,
+                        process.env.JWT_SECRET,
                         {
                             expiresIn: 3600
                         },
