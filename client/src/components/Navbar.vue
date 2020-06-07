@@ -11,7 +11,10 @@
             <router-link v-if="getAuthenticated" to="/" @click.native="logout"
                 >Logout</router-link
             >
-            <router-link v-if="getAuthenticated" to="/photos">Photos</router-link>
+            <router-link v-if="getAuthenticated" to="/photos"
+                >Photos</router-link
+            >
+            <a href="#smooth-scroll" v-smooth-scroll>Smooth Scroll</a>
         </nav>
     </header>
 </template>

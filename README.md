@@ -74,7 +74,7 @@ vue create client
 
 cd client
 
-npm i axios vue-axios vue-outside-events vue-meta vue-lazyload
+npm i axios vue-axios vue-outside-events vue-meta vue-lazyload vue2-smooth-scroll
 ```
 
 # Deploy to Heroku

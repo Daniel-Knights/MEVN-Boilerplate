@@ -1,0 +1,167 @@
+@keyframes tracking-in-contract {
+    0% {
+        letter-spacing: 1em;
+        opacity: 0;
+    }
+    40% {
+        opacity: 0.6;
+    }
+    100% {
+        letter-spacing: normal;
+        opacity: 1;
+    }
+}
+
+@keyframes tracking-in-slide {
+    0% {
+        transform: translate(-20px, -10px);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide {
+    from {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-up {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+}
+
+@keyframes slide-right {
+    from {
+        transform: translateX(-130%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes paginate-right {
+    from {
+        transform: translateX(-20%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes paginate-left {
+    from {
+        transform: translateX(20%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes body {
+    from {
+        opacity: 0;
+        transform: scale(1.1);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes opacity-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes opacity-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes scale-in {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes alert-in {
+    0% {
+        opacity: 0;
+        letter-spacing: 0;
+    }
+    100% {
+        opacity: 1;
+        letter-spacing: 1px;
+    }
+}
+
+@keyframes submit-in {
+    0% {
+        text-shadow: 0 0 $dark;
+    }
+    100% {
+        text-shadow: -4px 0 $primary;
+    }
+}
+
+@-webkit-keyframes submit-in {
+    0% {
+        text-shadow: 0 0 $dark;
+    }
+    100% {
+        text-shadow: -4px 0 $primary;
+    }
+}
+
+@-moz-keyframes submit-in {
+    0% {
+        text-shadow: 0 0 $dark;
+    }
+    100% {
+        text-shadow: -4px 0 $primary;
+    }
+}
+
+@keyframes popup {
+    0% {
+        bottom: -100%;
+    }
+
+    100% {
+        bottom: 0;
+    }
+}

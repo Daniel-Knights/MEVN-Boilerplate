@@ -7,10 +7,15 @@ import Axios from "axios";
 import VueAxios from "vue-axios";
 
 import vOutsideEvents from "vue-outside-events";
+import vueSmoothScroll from "vue2-smooth-scroll";
 import VueLazyLoad from "vue-lazyload";
 
 Vue.use(VueAxios, Axios);
 Vue.use(vOutsideEvents);
+Vue.use(vueSmoothScroll, {
+    duration: 1250,
+    updateHistory: false
+});
 Vue.use(VueLazyLoad, {
     attempt: 1,
     error: require("./assets/img/svg/error.svg"),
