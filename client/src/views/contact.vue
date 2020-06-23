@@ -75,6 +75,22 @@ import Axios from "axios";
 export default {
     name: "contact",
 
+    metaInfo() {
+        return {
+            title: "Contact",
+            meta: [
+                {
+                    name: "description",
+                    content: `The contact page of ${this.$appName}`
+                },
+                {
+                    property: "og:description",
+                    content: `The contact page of ${this.$appName}`
+                }
+            ]
+        };
+    },
+
     data() {
         return {
             contact: {
