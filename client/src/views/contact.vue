@@ -120,8 +120,14 @@ export default {
                     }, 5000);
                 })
                 .catch(err => {
+                    this.loading = false;
                     this.success = err.response.data.success;
                     this.successMessage = err.response.data.msg;
+
+                    setTimeout(() => {
+                        this.successMessage = "Send";
+                        this.success = null;
+                    }, 5000);
                 });
         },
         formHandler() {
