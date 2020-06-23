@@ -11,11 +11,17 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 app.use(compression()); // Enable deflate/gzip
-app.use(helmet()); // Protect HTTP headers
+app.use(
+    helmet({
+        // Allow use in iframe
+        frameguard: false
+    })
+); // Protect HTTP headers
 
 // Routes
-app.use("/api/posts", require("./routes/api/posts"));
-app.use("/api/auth", require("./routes/api/auth"));
+app.use("/api/posts", require("./routes/posts"));
+app.use("/api/auth", require("./routes/auth"));
+app.use("/api/direct", require("./routes/email/direct"));
 
 // Handle production
 if (process.env.NODE_ENV === "production") {

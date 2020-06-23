@@ -7,15 +7,11 @@ import Axios from "axios";
 import VueAxios from "vue-axios";
 
 import vOutsideEvents from "vue-outside-events";
-import vueSmoothScroll from "vue2-smooth-scroll";
 import VueLazyLoad from "vue-lazyload";
+import VueScrollactive from "vue-scrollactive";
 
 Vue.use(VueAxios, Axios);
 Vue.use(vOutsideEvents);
-Vue.use(vueSmoothScroll, {
-    duration: 1250,
-    updateHistory: false
-});
 Vue.use(VueLazyLoad, {
     attempt: 1,
     error: require("./assets/img/svg/error.svg"),
@@ -26,6 +22,7 @@ Vue.use(VueLazyLoad, {
         threshold: 0.1
     }
 });
+Vue.use(VueScrollactive);
 
 // Global variable for accessing the apps name
 Vue.prototype.$appName = "MEVN Boilerplate";

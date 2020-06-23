@@ -1,41 +1,87 @@
-input[type="text"] {
-	width: 100%;
-	padding: 12px 20px;
-	margin: 8px 0;
-	display: inline-block;
-	border: 1px solid #ccc;
-	border-radius: 4px;
-	box-sizing: border-box;
-}
-
-input[type="submit"] {
-	cursor: pointer;
-	padding: 14px 20px;
-	margin: 8px 0;
-	width: 100%;
-	background-color: $primary;
-	color: $white;
-	border: none;
-	border-radius: 4px;
-	transition: background-color 0.1s;
-}
-
-input[type="submit"]:hover {
-	background-color: lighten($dark, 30%);
-}
-
-input[type="submit"]:active {
-	transform: scale(0.99);
-}
-
 form {
-	margin: auto;
-	width: 33%;
+    margin: auto;
+    padding: 38px 50px;
+    width: fit-content;
+    border-radius: 5px;
 
-	.form-group {
-		border-radius: 5px;
-		background-color: #f2f2f2;
-		padding: 20px;
-		margin: 10px;
-	}
+    .form-group {
+        margin: 10px;
+        padding: 10px 20px;
+        width: 30rem;
+        border-radius: 5px;
+        background-color: lighten($dark, 20%);
+        box-shadow: 1px 1px 10px rgba($dark, 0.2);
+
+        label {
+            color: $white;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px 20px;
+            margin: 8px 0;
+            font-family: $font_primary;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+    }
+
+    input[type="submit"] {
+        cursor: pointer;
+        padding: 10px 20px;
+        margin: 8px 0;
+        width: 15rem;
+        font-family: $font_primary;
+        color: $dark;
+        background-color: transparent;
+        border: 3px solid $dark;
+        border-radius: 4px;
+        transition: background-color 0.1s, color 0.1s;
+        box-shadow: 1px 1px 10px rgba($dark, 0.2);
+    }
+
+    input[type="submit"]:hover {
+        color: $white;
+        background-color: lighten($dark, 10%);
+    }
+
+    input[type="submit"]:active {
+        transform: scale(0.99);
+    }
+
+    .loading-ellipsis {
+        position: absolute;
+        transform: translate(213px, -67px);
+
+        div {
+            position: absolute;
+            top: 33px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: $dark;
+            animation-timing-function: cubic-bezier(0, 1, 1, 0);
+        }
+
+        div:nth-child(1) {
+            left: 8px;
+            animation: loading-ellipsis1 0.6s infinite;
+        }
+
+        div:nth-child(2) {
+            left: 8px;
+            animation: loading-ellipsis2 0.6s infinite;
+        }
+
+        div:nth-child(3) {
+            left: 32px;
+            animation: loading-ellipsis2 0.6s infinite;
+        }
+
+        div:nth-child(4) {
+            left: 56px;
+            animation: loading-ellipsis3 0.6s infinite;
+        }
+    }
 }

@@ -1,12 +1,12 @@
 const express = require("express");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const auth = require("../../middleware/auth");
+const auth = require("../middleware/auth");
 const ObjectID = require("mongodb").ObjectID;
 
 const router = express.Router();
 
-const config = require("../../config/config");
+const config = require("../config/config");
 
 async function usersCollection() {
     const client = await config;

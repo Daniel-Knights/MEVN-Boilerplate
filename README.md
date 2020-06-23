@@ -1,6 +1,15 @@
 <h1>MEVN Boilerplate</h1>
 
-A MEVN boilerplate setup with example CRUD, auth/user, lazy-loaded photos, and pagination functionality out of the box.
+A MEVN boilerplate setup with:
+
+<ul>
+ <li>Example CRUD functionality</li>
+ <li>Auth/user functionality</li>
+ <li>Lazy-loaded photos</li>
+ <li>Email</li>
+ <li>Validation</li>
+ <li>Pagination</li> 
+</ul> 
 
 Includes Heroku deployment walkthrough.
 
@@ -11,28 +20,35 @@ Requires manually setting up a [MongoDB](https://www.mongodb.com) database.
 ## From boilerplate
 
 ```bash
-npm i
+npm i -g nodemon
+nodemon
 
 cd client
 
 npm i
-
-cd ..
-
-npm run dev
+npm run serve
 ```
 
-Create a `.env` file in your root directory and add `MONGO_URI=<your-mongodb-connection-string>`.
+Create a `.env` file in your root directory and add
+
+```txt
+MONGO_URI=<your-mongodb-connection-string>
+JWT_SECRET=sl_myJwtSecret
+EMAIL_ACCOUNT=<your-gmail-account>
+EMAIL_PASSWORD=<your-google-app-password>
+```
 
 In `server/routes/api/auth.js` and `server/routes/api/posts.js`, inside the collection functions, replace "vue_express" with your database name:
 
-```bash
+```js
 return client.db("vue_express").collection("users");
 ```
 
 For the photo page to work, go to [Pixabay](https://pixabay.com/accounts/register/) and register for an account. Then go to the [docs page](https://pixabay.com/api/docs/), copy your given API key and replace `<API_KEY>` in the Axios request of the photos page.
 
 Else, you can set up your own backend solution for photos and the frontend should fit to suit.
+
+Create a [Fontawesome kit](https://fontawesome.com/) and include it in the `<head>` of `client/public/index.html`.
 
 Then it will be available at http://localhost:8080.
 
@@ -43,7 +59,7 @@ Then it will be available at http://localhost:8080.
 ```bash
 npm init
 
-npm i express cors mongodb concurrently dotenv bcryptjs jsonwebtoken compression helmet -D nodemon
+npm i express cors mongodb dotenv bcryptjs jsonwebtoken compression helmet nodemailer
 ```
 
 In `package.json` replace
@@ -59,9 +75,7 @@ with
 ```json
 "scripts": {
     "start": "node server/server.js",
-    "nodemon": "nodemon server/server.js",
     "serve": "npm run serve --prefix client",
-    "dev": "concurrently \"npm run nodemon\" \"npm run serve\""
 },
 ```
 
@@ -74,14 +88,14 @@ vue create client
 
 cd client
 
-npm i axios vue-axios vue-outside-events vue-meta vue-lazyload vue2-smooth-scroll
+npm i axios vue-axios vue-outside-events vue-meta vue-lazyload vue-scrollactive
 ```
 
 # Deploy to Heroku
 
 **Vue**
 
-```
+```bash
 cd client
 npm run build
 ```
@@ -99,7 +113,7 @@ heroku create <your-app-name>
 
 Then go to https://dashboard.heroku.com/apps click on your app, click 'deploy', choose the GitHub deployment method and follow the instructions.
 
-Also, go to your apps settings and set a config var with a key of `NODE_ENV` and value of `production`.
+Also, go to your apps settings and set config vars matching your `.env` variables. Then add an extra variable with a key of `NODE_ENV` and value of `production`.
 
 ## Troubleshooting
 

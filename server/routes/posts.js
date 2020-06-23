@@ -1,10 +1,10 @@
 const express = require("express");
 const mongodb = require("mongodb");
-const auth = require("../../middleware/auth");
+const auth = require("../middleware/auth");
 
 const router = express.Router();
 
-const config = require("../../config/config");
+const config = require("../config/config");
 
 async function postsCollection() {
     const client = await config;

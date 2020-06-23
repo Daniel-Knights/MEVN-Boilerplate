@@ -40,13 +40,13 @@ export default {
     methods: {
         async fetchPhotos() {
             const photos = await Axios.get(
-                "https://pixabay.com/api/?key=<API_KEY>&q=animals&per_page=100"
+                "https://pixabay.com/api/?key=<YOUR_API_KEY>&q=animals&per_page=100"
             );
 
             photos.data.hits.forEach(i => {
                 let imageObj = {
                     src: i.webformatURL,
-                    loading: i.webformatURL
+                    loading: i.previewURL
                 };
 
                 this.photos.push(imageObj);
@@ -60,4 +60,31 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped lang="scss">
+.img-container {
+    .images {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin: 20px;
+
+        .image {
+            height: 300px;
+            min-width: 300px;
+
+            img[lazy="loading"] {
+                filter: blur(10px) grayscale(100%);
+            }
+
+            img {
+                height: 300px;
+                min-width: 300px;
+                object-fit: cover;
+                filter: blur(0);
+                transition: filter 0.2s;
+                overflow: hidden;
+            }
+        }
+    }
+}
+</style>

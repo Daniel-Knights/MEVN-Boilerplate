@@ -2,9 +2,16 @@
     <div id="app">
         <Navbar />
         <router-view></router-view>
-        <a href="#home" id="smooth-scroll" v-smooth-scroll
-            >Smooth Scroll Example (Click Me To Go Back Up)</a
+        <scrollactive
+            :offset="0"
+            :duration="1000"
+            bezier-easing-value=".5,0,.35,1"
+            :modifyUrl="false"
         >
+            <a href="#home" id="smooth-scroll" class="scrollactive-item"
+                >Smooth Scroll Example (Click Me To Go Back Up)</a
+            >
+        </scrollactive>
     </div>
 </template>
 
