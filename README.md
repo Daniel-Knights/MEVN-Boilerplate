@@ -48,7 +48,7 @@ For the photo page to work, go to [Pixabay](https://pixabay.com/accounts/registe
 
 Else, you can set up your own backend solution for photos and the frontend should fit to suit.
 
-Create a [Fontawesome kit](https://fontawesome.com/) and include it in the `<head>` of `client/public/index.html`.
+Create a [Fontawesome kit](https://fontawesome.com/) and replace mine in the `<head>` of `client/public/index.html`.
 
 Then it will be available at http://localhost:8080.
 
