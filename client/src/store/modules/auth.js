@@ -10,7 +10,14 @@ const actions = {
 		) {
 			await Axios.post("auth/signup", credentials)
 				.then((res) => {
-					localStorage.setItem("token", res.data.token);
+					const date = new Date();
+					const auth = {
+						token: res.data.token,
+						ttl: date.getTime() + 604800000
+					}
+
+					localStorage.setItem("auth", JSON.stringify(auth));
+
 					commit("setUser", res.data.userInfo);
 					commit("setToken", res.data.token);
 					commit("setAuthenticated", true);
@@ -27,7 +34,14 @@ const actions = {
 		if (credentials.email !== "" && credentials.password !== "") {
 			await Axios.post("auth/login", credentials)
 				.then((res) => {
-					localStorage.setItem("token", res.data.token);
+					const date = new Date();
+					const auth = {
+						token: res.data.token,
+						ttl: date.getTime() + 604800000
+					}
+
+					localStorage.setItem("auth", JSON.stringify(auth));
+
 					commit("setUser", res.data.userInfo);
 					commit("setToken", res.data.token);
 					commit("setAuthenticated", true);
@@ -41,7 +55,7 @@ const actions = {
 	},
 
 	async attempt({ commit }) {
-		const token = localStorage.getItem("token");
+		const token = JSON.parse(localStorage.getItem("auth")).token;
 
 		if (token !== null) {
 			await Axios.get("auth/user", {
@@ -61,7 +75,8 @@ const actions = {
 	},
 
 	logout({ commit }) {
-		localStorage.removeItem("token");
+		localStorage.removeItem("auth");
+
 		commit("setUser", null);
 		commit("setToken", null);
 		commit("setAuthenticated", false);

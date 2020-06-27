@@ -29,19 +29,26 @@ npm i
 npm run serve
 ```
 
-Create a `.env` file in your root directory and add
+Create a `.env` file in your root directory and add:
 
 ```txt
 MONGO_URI=<your-mongodb-connection-string>
 JWT_SECRET=sl_myJwtSecret
 EMAIL_ACCOUNT=<your-gmail-account>
 EMAIL_PASSWORD=<your-google-app-password>
+PORT=3000
+```
+
+Create a `.env` file in the `client` directory and add:
+
+```txt
+VUE_APP_NODE_ENV=development
 ```
 
 In `server/routes/api/auth.js` and `server/routes/api/posts.js`, inside the collection functions, replace "vue_express" with your database name:
 
 ```js
-return client.db("vue_express").collection("users");
+return connection.db("vue_express").collection("users");
 ```
 
 For the photo page to work, go to [Pixabay](https://pixabay.com/accounts/register/) and register for an account. Then go to the [docs page](https://pixabay.com/api/docs/), copy your given API key and replace `<API_KEY>` in the Axios request of the photos page.
@@ -59,7 +66,7 @@ Then it will be available at http://localhost:8080.
 ```bash
 npm init
 
-npm i express cors mongodb dotenv bcryptjs jsonwebtoken compression helmet nodemailer
+npm i express cors mongodb dotenv bcryptjs jsonwebtoken compression helmet nodemailer morgan
 ```
 
 In `package.json` replace
@@ -113,7 +120,7 @@ heroku create <your-app-name>
 
 Then go to https://dashboard.heroku.com/apps click on your app, click 'deploy', choose the GitHub deployment method and follow the instructions.
 
-Also, go to your apps settings and set config vars matching your `.env` variables. Then add an extra variable with a key of `NODE_ENV` and value of `production`.
+Also, go to your apps settings and set config vars matching your root `.env` variables. Set a config var for `VUE_APP_NODE_ENV` but add a value of `production` instead of `development`, then add another variable with a key of `NODE_ENV` and value of `production`.
 
 ## Troubleshooting
 

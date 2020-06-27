@@ -35,10 +35,18 @@ export default {
     },
 
     methods: {
-        ...mapActions(["attempt"])
+        ...mapActions(["attempt", "logout"])
     },
 
     created() {
+        // Seven day JWT TTL
+        const date = new Date();
+        const auth = JSON.parse(localStorage.getItem("auth"));
+
+        if (auth === null) return;
+
+        if (date.getTime() > auth.ttl + 604800000) return this.logout();
+
         this.attempt();
     }
 };

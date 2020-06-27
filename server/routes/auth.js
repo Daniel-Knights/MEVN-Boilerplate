@@ -6,12 +6,14 @@ const ObjectID = require("mongodb").ObjectID;
 
 const router = express.Router();
 
-const config = require("../config/config");
+const connectDb = require("../config/db");
 
 async function usersCollection() {
-    const client = await config;
+    const connection = await connectDb;
 
-    return client.db("vue_express").collection("users");
+    console.log(`MongoDB (auth): ${connection.topology.s.state}`);
+
+    return connection.db("vue_express").collection("users");
 }
 
 router.get("/user", auth, async (req, res) => {

@@ -4,12 +4,14 @@ const auth = require("../middleware/auth");
 
 const router = express.Router();
 
-const config = require("../config/config");
+const connectDb = require("../config/db");
 
 async function postsCollection() {
-    const client = await config;
+    const connection = await connectDb;
 
-    return client.db("vue_express").collection("posts");
+    console.log(`MongoDB (posts): ${connection.topology.s.state}`);
+
+    return connection.db("vue_express").collection("posts");
 }
 
 // Get posts
