@@ -1,32 +1,53 @@
 @media only screen and (max-width: 700px) {
-    nav {
-        width: unset !important;
-    }
+    #app {
+        header {
+            nav {
+                width: 80%;
+            }
 
-    .container {
-        padding: 0 20px;
-    }
-
-    form {
-        width: unset;
-        margin: 10px;
-
-        input[type="submit"] {
-            width: 75%;
+            .scrollactive-nav {
+                margin: 0 20px;
+            }
         }
-    }
 
-    .img-container {
-        .images {
-            .image {
-                height: unset;
-                min-width: unset;
+        .container {
+            padding: 0 20px;
 
-                img {
+            .create-post {
+                #create-post {
+                    margin: 0;
+                    width: unset;
+                }
+            }
+        }
+
+        form {
+            margin: 10px auto;
+            padding: unset;
+            width: unset;
+            max-width: 500px;
+
+            .form-group {
+                width: unset;
+            }
+
+            input[type="submit"] {
+                width: 75%;
+            }
+        }
+
+        .img-container {
+            .images {
+                .image {
                     height: unset;
                     min-width: unset;
-                    object-fit: unset;
-                    max-width: 100%;
+
+                    img {
+                        height: unset;
+                        min-width: unset;
+                        object-fit: unset;
+                        max-width: 100%;
+                    }
                 }
             }
         }

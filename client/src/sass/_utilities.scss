@@ -1,27 +1,28 @@
 * {
-	box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-	position: relative;
-	width: 100%;
-	min-height: 100vh;
-	margin: 0;
-	padding: 0;
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
 #app {
-	margin-top: 100px;
-	text-align: center;
-	font-family: $font_primary;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	color: $dark;
+    margin-top: 100px;
+    text-align: center;
+    font-family: $font_primary;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: $dark;
 }
 
 .container {
-	max-width: 800px;
-	margin: 0 auto;
+    max-width: 730px;
+    margin: 0 auto;
+    position: relative;
 }
 
 h2,
@@ -37,24 +38,24 @@ p {
 }
 
 span {
-	display: block;
+    display: block;
 }
 
 a {
-	color: $dark;
-	text-decoration: none;
+    color: $dark;
+    text-decoration: none;
 }
 
 button {
-	cursor: pointer;
-	width: 15rem;
-	height: 2rem;
-	border: none;
-	border-radius: 3px;
-	color: $white;
-	background-color: $primary;
-	transition: background-color 0.1s;
-	outline: none;
+    cursor: pointer;
+    width: 15rem;
+    height: 2rem;
+    border: none;
+    border-radius: 3px;
+    color: $white;
+    background-color: $primary;
+    transition: background-color 0.1s;
+    outline: none;
 }
 
 input,
@@ -71,11 +72,11 @@ textarea {
 }
 
 button:hover {
-	background-color: lighten($dark, 30%);
+    background-color: lighten($dark, 30%);
 }
 
 button:active {
-	transform: scale(0.99);
+    transform: scale(0.99);
 }
 
 .alert-danger {

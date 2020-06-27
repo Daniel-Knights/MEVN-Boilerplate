@@ -52,10 +52,15 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 #smooth-scroll {
     display: block;
     margin-top: 10000px !important;
     font-size: 20px;
+    transition: color 0.2s;
+}
+
+#smooth-scroll:hover {
+    color: lighten($dark, 50%);
 }
 </style>
