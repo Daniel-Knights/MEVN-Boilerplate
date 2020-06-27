@@ -31,9 +31,7 @@ Vue.prototype.$appName = "MEVN Boilerplate";
 const env = process.env.VUE_APP_NODE_ENV;
 
 if (env === "development") {
-    Axios.defaults.baseURL = "http://localhost:3000/api/";
-} else if (env === "production") {
-    Axios.defaults.baseURL = window.location.origin + "/api/";
+    Axios.defaults.baseURL = "http://localhost:3000";
 }
 
 Vue.config.productionTip = false;

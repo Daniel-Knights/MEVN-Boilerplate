@@ -4,7 +4,7 @@ const actions = {
 	async fetchPosts({ commit }, page) {
 		const pageCheck = page ? page : 1;
 
-		await Axios.get(`posts?page=${pageCheck}`)
+		await Axios.get(`/api/posts?page=${pageCheck}`)
 			.then((res) => {
 				res.data["path"] = window.location.origin;
 
@@ -20,7 +20,7 @@ const actions = {
 
 		if (token !== null) {
 			await Axios.post(
-				"posts",
+				"/api/posts",
 				{
 					data: text,
 				},
@@ -44,7 +44,7 @@ const actions = {
 		const token = localStorage.getItem("token");
 
 		if (token !== null) {
-			await Axios.delete(`posts/${post.id}`, {
+			await Axios.delete(`/api/posts/${post.id}`, {
 				headers: {
 					"Content-type": "application/json",
 					"x-auth-token": token,

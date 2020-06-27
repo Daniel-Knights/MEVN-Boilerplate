@@ -8,7 +8,7 @@ const actions = {
 			credentials.email !== "" &&
 			credentials.password !== ""
 		) {
-			await Axios.post("auth/signup", credentials)
+			await Axios.post("/api/auth/signup", credentials)
 				.then((res) => {
 					const date = new Date();
 					const auth = {
@@ -32,7 +32,7 @@ const actions = {
 
 	async login({ commit }, credentials) {
 		if (credentials.email !== "" && credentials.password !== "") {
-			await Axios.post("auth/login", credentials)
+			await Axios.post("/api/auth/login", credentials)
 				.then((res) => {
 					const date = new Date();
 					const auth = {
@@ -58,7 +58,7 @@ const actions = {
 		const token = JSON.parse(localStorage.getItem("auth")).token;
 
 		if (token !== null) {
-			await Axios.get("auth/user", {
+			await Axios.get("/api/auth/user", {
 				headers: {
 					"Content-type": "application/json",
 					"x-auth-token": token,
