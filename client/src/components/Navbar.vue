@@ -111,7 +111,7 @@ header {
     position: fixed;
     top: 0;
     z-index: 100;
-    background: linear-gradient(to right, $dark, $light);
+    background: linear-gradient(to right, $black, $light);
 
     nav {
         display: flex;
@@ -143,9 +143,7 @@ header {
 }
 
 #smooth-scroll-svg-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex-basic;
 
     #smooth-scroll-svg {
         position: absolute;
@@ -163,6 +161,6 @@ header {
 }
 
 .nav-selected {
-    color: lighten($dark, 20%) !important;
+    color: lighten($black, 20%) !important;
 }
 </style>

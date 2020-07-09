@@ -4,7 +4,9 @@ const morgan = require("morgan");
 const compression = require("compression");
 const helmet = require("helmet");
 
-require("dotenv").config();
+if (process.env.NODE_ENV !== "production") {
+    require("dotenv").config();
+}
 
 const app = express();
 

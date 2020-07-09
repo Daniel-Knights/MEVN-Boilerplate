@@ -8,6 +8,8 @@
                     type="text"
                     name="name"
                     v-model="contact.name"
+                    @focus="$hideLabel($event)"
+                    @focusout="$showLabel($event)"
                     :class="{
                         'alert-success': contactSuccess.name,
                         'alert-danger': contactSuccess.name === false
@@ -20,6 +22,8 @@
                     type="text"
                     name="email"
                     v-model="contact.email"
+                    @focus="$hideLabel($event)"
+                    @focusout="$showLabel($event)"
                     :class="{
                         'alert-success': contactSuccess.email,
                         'alert-danger': contactSuccess.email === false
@@ -32,6 +36,8 @@
                     type="text"
                     name="phone"
                     v-model="contact.phone"
+                    @focus="$hideLabel($event)"
+                    @focusout="$showLabel($event)"
                     :class="{
                         'alert-success': contactSuccess.phone,
                         'alert-danger': contactSuccess.phone === false
@@ -45,6 +51,8 @@
                     cols="30"
                     rows="10"
                     v-model="contact.message"
+                    @focus="$hideLabel($event)"
+                    @focusout="$showLabel($event)"
                     :class="{
                         'alert-success': contactSuccess.message,
                         'alert-danger': contactSuccess.message === false
@@ -156,7 +164,7 @@ export default {
 
             const phoneTest = /^\d+$/;
 
-            // Advanced validation
+            // Individual input validation
             name !== "" ? (success.name = true) : (success.name = false);
 
             if (email !== "") {

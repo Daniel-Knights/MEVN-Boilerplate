@@ -131,7 +131,7 @@
 
 @keyframes submit-in {
     0% {
-        text-shadow: 0 0 $dark;
+        text-shadow: 0 0 $black;
     }
     100% {
         text-shadow: -4px 0 $light;
@@ -140,7 +140,7 @@
 
 @-webkit-keyframes submit-in {
     0% {
-        text-shadow: 0 0 $dark;
+        text-shadow: 0 0 $black;
     }
     100% {
         text-shadow: -4px 0 $light;
@@ -149,7 +149,7 @@
 
 @-moz-keyframes submit-in {
     0% {
-        text-shadow: 0 0 $dark;
+        text-shadow: 0 0 $black;
     }
     100% {
         text-shadow: -4px 0 $light;

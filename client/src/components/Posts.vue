@@ -21,7 +21,7 @@
                 :index="index"
                 :key="post._id"
             >
-                {{ post.created_at }}
+                {{ $dateFormat(post.created_at) }}
                 <i @click="deleteHandler(post._id)" class="fa fa-trash"></i>
                 <p class="text">{{ post.text }}</p>
             </div>
@@ -97,7 +97,7 @@ export default {
     margin: 0 20px;
     padding: 5px;
     width: 300px;
-    border: 1px solid $dark;
+    border: 1px solid $black;
     border-radius: 5px;
 }
 
@@ -113,7 +113,7 @@ export default {
         top: 0;
         left: 0;
         padding: 5px 15px 5px 15px;
-        background-color: $dark;
+        background-color: $black;
         color: $white;
         font-size: 13px;
     }

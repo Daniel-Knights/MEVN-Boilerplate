@@ -9,14 +9,19 @@ form {
         padding: 10px 20px;
         width: 30rem;
         border-radius: 5px;
-        background-color: lighten($dark, 20%);
-        box-shadow: 1px 1px 10px rgba($dark, 0.2);
+        background-color: lighten($black, 20%);
+        box-shadow: 1px 1px 10px rgba($black, 0.2);
 
         label {
-            color: $white;
+            pointer-events: none;
+            position: absolute;
+            margin: 17px 0 0 20px;
+            color: rgba($black, 0.6);
+            transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
         }
 
         input[type="text"],
+        input[type="password"],
         textarea {
             width: 100%;
             padding: 10px 20px;
@@ -33,17 +38,17 @@ form {
         margin: 8px 0;
         width: 15rem;
         font-family: $font_primary;
-        color: $dark;
+        color: $black;
         background-color: transparent;
-        border: 3px solid $dark;
+        border: 3px solid $black;
         border-radius: 4px;
         transition: background-color 0.1s, color 0.1s;
-        box-shadow: 1px 1px 10px rgba($dark, 0.2);
+        box-shadow: 1px 1px 10px rgba($black, 0.2);
     }
 
     input[type="submit"]:hover {
         color: $white;
-        background-color: lighten($dark, 10%);
+        background-color: lighten($black, 10%);
     }
 
     input[type="submit"]:active {
@@ -60,7 +65,7 @@ form {
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background: $dark;
+            background: $black;
             animation-timing-function: cubic-bezier(0, 1, 1, 0);
         }
 

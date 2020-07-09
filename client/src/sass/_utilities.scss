@@ -4,10 +4,11 @@
 
 body {
     position: relative;
-    width: 100%;
-    min-height: 100vh;
     margin: 0;
     padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    background-color: $white;
 }
 
 #app {
@@ -16,14 +17,25 @@ body {
     font-family: $font_primary;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    color: $dark;
+    color: $black;
 }
+
+// Mixins
+@mixin flex-basic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// Utility classes
 
 .container {
     max-width: 730px;
     margin: 0 auto;
     position: relative;
 }
+
+// Defaults
 
 h2,
 h3,
@@ -42,7 +54,7 @@ span {
 }
 
 a {
-    color: $dark;
+    color: $black;
     text-decoration: none;
 }
 
@@ -68,16 +80,18 @@ textarea {
 
 ::selection {
     color: $white;
-    background-color: $dark;
+    background-color: $black;
 }
 
 button:hover {
-    background-color: lighten($dark, 30%);
+    background-color: lighten($black, 30%);
 }
 
 button:active {
     transform: scale(0.99);
 }
+
+// Error handling
 
 .alert-danger {
     border: 1px solid #ff5b5f;
@@ -94,6 +108,6 @@ button:active {
 }
 
 .alert-submit-danger {
-    background-color: $dark !important;
+    background-color: $black !important;
     color: $white !important;
 }

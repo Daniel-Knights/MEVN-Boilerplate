@@ -54,7 +54,7 @@ router.post("/login", async (req, res) => {
                 { id: user._id },
                 process.env.JWT_SECRET,
                 {
-                    expiresIn: 3600
+                    expiresIn: "7d"
                 },
                 (err, token) => {
                     if (err) throw err;
@@ -118,7 +118,7 @@ router.post("/signup", async (req, res) => {
                         { id: user.ops[0]._id },
                         process.env.JWT_SECRET,
                         {
-                            expiresIn: 3600
+                            expiresIn: "7d"
                         },
                         (err, token) => {
                             if (err) throw err;

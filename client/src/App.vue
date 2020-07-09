@@ -1,6 +1,7 @@
 <template>
     <div id="app">
         <Navbar />
+        <Loading v-if="loading" />
         <router-view></router-view>
         <scrollactive
             :offset="0"
@@ -18,7 +19,8 @@
 <script>
 import { mapActions } from "vuex";
 
-import Navbar from "./components/Navbar.vue";
+import Navbar from "./components/Navbar";
+import Loading from "./components/Loading";
 
 export default {
     name: "App",
@@ -31,23 +33,45 @@ export default {
     },
 
     components: {
-        Navbar
+        Navbar,
+        Loading
+    },
+
+    data() {
+        return {
+            loading: true
+        };
     },
 
     methods: {
-        ...mapActions(["attempt", "logout"])
+        ...mapActions(["attempt", "logout"]),
+        checkToken() {
+            // Seven day JWT TTL
+            const date = new Date();
+            const auth = JSON.parse(localStorage.getItem("auth"));
+
+            if (auth === null) return;
+
+            if (date.getTime() > auth.ttl) return this.logout();
+
+            this.attempt();
+        }
     },
 
     created() {
-        // Seven day JWT TTL
-        const date = new Date();
-        const auth = JSON.parse(localStorage.getItem("auth"));
+        this.loading = true;
+        this.checkToken();
 
-        if (auth === null) return;
+        window.addEventListener("load", () => {
+            this.loading = false;
 
-        if (date.getTime() > auth.ttl + 604800000) return this.logout();
+            // Lazy load Fontawesome kit
+            const script = document.createElement("script");
+            script.src = "https://kit.fontawesome.com/6994a6ed7d.js";
+            script.crossOrigin = "anonymous";
 
-        this.attempt();
+            document.getElementsByTagName("head")[0].appendChild(script);
+        });
     }
 };
 </script>
@@ -61,6 +85,6 @@ export default {
 }
 
 #smooth-scroll:hover {
-    color: lighten($dark, 50%);
+    color: lighten($black, 50%);
 }
 </style>

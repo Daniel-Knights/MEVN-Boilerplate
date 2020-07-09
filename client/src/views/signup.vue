@@ -4,17 +4,31 @@
         <form @submit.prevent="signupHandler()">
             <div class="form-group">
                 <label for="name">Name</label>
-                <input v-model="credentials.name" type="text" name="name" />
+                <input
+                    v-model="credentials.name"
+                    @focus="$hideLabel($event)"
+                    @focusout="$showLabel($event)"
+                    type="text"
+                    name="name"
+                />
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input v-model="credentials.email" type="text" name="email" />
+                <input
+                    v-model="credentials.email"
+                    @focus="$hideLabel($event)"
+                    @focusout="$showLabel($event)"
+                    type="text"
+                    name="email"
+                />
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
                 <input
                     v-model="credentials.password"
-                    type="text"
+                    @focus="$hideLabel($event)"
+                    @focusout="$showLabel($event)"
+                    type="password"
                     name="password"
                 />
             </div>
@@ -100,9 +114,9 @@ export default {
 
 <style scoped>
 .auth-alert {
-	margin: 10px auto;
-	padding: 5px 0;
-	width: 300px;
-	border-radius: 5px;
+    margin: 10px auto;
+    padding: 5px 0;
+    width: 300px;
+    border-radius: 5px;
 }
 </style>
