@@ -22,6 +22,12 @@ app.use(
     })
 ); // Protect HTTP headers
 
+// Use this to create your JWT Secret then delete
+const hexStr = require("crypto")
+    .randomBytes(64)
+    .toString("hex");
+console.log(hexStr);
+
 // Routes
 app.use("/api/posts", require("./routes/posts"));
 app.use("/api/auth", require("./routes/auth"));

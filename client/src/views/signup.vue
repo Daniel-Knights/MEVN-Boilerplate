@@ -33,16 +33,6 @@
                 />
             </div>
             <input type="submit" value="Signup" />
-            <span
-                v-if="getAuthMessage"
-                class="alert-danger auth-alert"
-                v-html="getAuthMessage"
-            ></span>
-            <span
-                v-if="error"
-                class="alert-danger  auth-alert"
-                v-html="error"
-            ></span>
         </form>
     </div>
 </template>
@@ -75,48 +65,29 @@ export default {
                 name: "",
                 email: "",
                 password: ""
-            },
-            error: ""
+            }
         };
     },
 
-    computed: {
-        ...mapGetters(["getAuthMessage"])
-    },
-
     methods: {
-        ...mapActions(["signup", "changeAuthMessage"]),
+        ...mapActions(["signup"]),
         signupHandler() {
             const name = this.credentials.name;
             const email = this.credentials.email;
             const password = this.credentials.password;
 
-            this.error = "";
-            this.changeAuthMessage("");
-
             // Simple validation
-            if (email === "" || password === "" || this.name === "")
-                return (this.error = "Please fill required fields");
+            if (email === "" || password === "" || name === "")
+                return this.$toasted.show("Please fill required fields");
             if (!email.includes("@") || !email.includes("."))
-                return (this.error = "Invalid email");
+                return this.$toasted.show("Invalid email");
             if (password.length < 6)
-                return (this.error = "Password must be at least 6 characters");
+                return this.$toasted.show(
+                    "Password must be at least 6 characters"
+                );
 
             this.signup(this.credentials);
         }
-    },
-
-    beforeDestroy() {
-        this.changeAuthMessage("");
     }
 };
 </script>
-
-<style scoped>
-.auth-alert {
-    margin: 10px auto;
-    padding: 5px 0;
-    width: 300px;
-    border-radius: 5px;
-}
-</style>

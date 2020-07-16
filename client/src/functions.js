@@ -13,22 +13,11 @@ export const dateFormat = (Vue.prototype.$dateFormat = function(string) {
     );
 });
 
-// Capitalize category names
 export const capitalize = (Vue.prototype.$capitalize = function(string) {
-    if (string !== "books/comics") {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    } else {
-        return (
-            string.charAt(0).toUpperCase() +
-            string.slice(1, 6) +
-            string.charAt(6).toUpperCase() +
-            string.slice(7)
-        );
-    }
+    return string.charAt(0).toUpperCase() + string.slice(1);
 });
 
 export const randomize = (Vue.prototype.$randomize = function(items) {
-    // Randomize items
     for (let i = items.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [items[i], items[j]] = [items[j], items[i]];
@@ -69,4 +58,26 @@ export const showLabel = (Vue.prototype.$showLabel = function(e) {
 
     label.style.opacity = "1";
     label.style.transform = "scale(1)";
+});
+
+export const isNumber = (Vue.prototype.$isNumber = function(e) {
+    const keysAllowed = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+    const keyPressed = e.key;
+    if (!keysAllowed.includes(keyPressed)) {
+        e.preventDefault();
+    }
+});
+
+export const inputPrice = (Vue.prototype.$inputPrice = function(e) {
+    if (
+        (e.keyCode < 48 || e.keyCode > 57) &&
+        e.keyCode !== 8 &&
+        e.keyCode !== 190
+    ) {
+        e.preventDefault();
+    } else if (price.includes(".") && e.keyCode === 190) {
+        e.preventDefault();
+    } else if (price === "") {
+        price = "£" + e.target.value;
+    }
 });

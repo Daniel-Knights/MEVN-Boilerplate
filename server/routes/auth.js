@@ -88,59 +88,62 @@ router.post("/signup", async (req, res) => {
     }
 
     // Check for existing user
-    users.findOne({ email }).then(user => {
-        if (user) {
-            return res.status(400).json({ msg: "User already exists" });
-        }
-    });
+    await users.findOne({ email }).then(user => {
+        if (user) return res.status(400).json({ msg: "User already exists" });
 
-    const newUser = {
-        name,
-        email,
-        password
-    };
+        const newUser = {
+            name,
+            email,
+            password
+        };
 
-    // Create salt and hash
-    bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, async (err, hash) => {
-            if (err) throw err;
-            newUser.password = hash;
+        // Create salt and hash
+        bcrypt.genSalt(10, (err, salt) => {
+            bcrypt.hash(newUser.password, salt, async (err, hash) => {
+                if (err) throw err;
+                newUser.password = hash;
 
-            await users
-                .insertOne({
-                    name: newUser.name,
-                    email: newUser.email,
-                    password: newUser.password,
-                    created_at: new Date()
-                })
-                .then(user => {
-                    jwt.sign(
-                        { id: user.ops[0]._id },
-                        process.env.JWT_SECRET,
-                        {
-                            expiresIn: "7d"
-                        },
-                        (err, token) => {
-                            if (err) throw err;
+                await users
+                    .insertOne({
+                        name: newUser.name,
+                        email: newUser.email,
+                        password: newUser.password,
+                        created_at: new Date()
+                    })
+                    .then(user => {
+                        jwt.sign(
+                            { id: user.ops[0]._id },
+                            process.env.JWT_SECRET,
+                            {
+                                expiresIn: "7d"
+                            },
+                            (err, token) => {
+                                if (err) throw err;
 
-                            const userInfo = {
-                                id: user.ops[0]._id,
-                                name: user.ops[0].name,
-                                email: user.ops[0].email,
-                                created_at: user.ops[0].created_at
-                            };
+                                const userInfo = {
+                                    id: user.ops[0]._id,
+                                    name: user.ops[0].name,
+                                    email: user.ops[0].email,
+                                    created_at: user.ops[0].created_at
+                                };
 
-                            res.json({
-                                token,
-                                userInfo,
-                                message: "User signed up successfully"
-                            }).send();
-                        }
-                    );
-                })
-                .catch(err => {
-                    console.log(err);
-                });
+                                res.json({
+                                    token,
+                                    userInfo,
+                                    message: "User signed up successfully"
+                                }).send();
+                            }
+                        );
+                    })
+                    .catch(err => {
+                        console.error(err);
+
+                        res.status(400).json({
+                            msg:
+                                "Something went wrong, please try again or contact support"
+                        });
+                    });
+            });
         });
     });
 });

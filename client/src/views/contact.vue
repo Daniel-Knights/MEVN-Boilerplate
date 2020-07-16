@@ -190,7 +190,26 @@ export default {
                 success.message
             )
                 this.sendEmail();
+        },
+        labelHandler() {
+            const inputs = [...this.$el.children[1].elements];
+
+            // Prevent labels from reappearing
+            inputs.forEach(i => {
+                if (!i.previousSibling) return;
+                if (i.previousSibling.localName !== "label") return;
+
+                if (i.value !== "") {
+                    i.previousSibling.style.opacity = "0";
+                } else {
+                    i.previousSibling.style.opacity = "1";
+                    i.previousSibling.style.transform = "scale(1)";
+                }
+            });
         }
+    },
+    updated() {
+        this.labelHandler();
     }
 };
 </script>

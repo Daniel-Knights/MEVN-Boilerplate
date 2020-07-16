@@ -21,11 +21,10 @@ const actions = {
                     commit("setUser", res.data.userInfo);
                     commit("setToken", res.data.token);
                     commit("setAuthenticated", true);
-                    commit("setAuthMessage", "");
                     router.push("/");
                 })
                 .catch(err => {
-                    commit("setAuthMessage", err.response.data.msg);
+                    this._vm.$toasted.show(err.response.data.msg);
                 });
         }
     },
@@ -45,11 +44,10 @@ const actions = {
                     commit("setUser", res.data.userInfo);
                     commit("setToken", res.data.token);
                     commit("setAuthenticated", true);
-                    commit("setAuthMessage", "");
                     router.push("/");
                 })
                 .catch(err => {
-                    commit("setAuthMessage", err.response.data.msg);
+                    this._vm.$toasted.show(err.response.data.msg);
                 });
         }
     },
@@ -83,32 +81,25 @@ const actions = {
         commit("setUser", null);
         commit("setToken", null);
         commit("setAuthenticated", false);
-    },
-
-    changeAuthMessage({ commit }, message) {
-        commit("setAuthMessage", message);
     }
 };
 
 const mutations = {
     setUser: (state, user) => (state.user = user),
     setToken: (state, token) => (state.token = token),
-    setAuthMessage: (state, message) => (state.authMessage = message),
     setAuthenticated: (state, bool) => (state.authenticated = bool)
 };
 
 const state = {
     user: null,
     token: null,
-    authenticated: false,
-    authMessage: ""
+    authenticated: false
 };
 
 const getters = {
     getUser: state => state.user,
     getToken: state => state.token,
-    getAuthenticated: state => state.authenticated,
-    getAuthMessage: state => state.authMessage
+    getAuthenticated: state => state.authenticated
 };
 
 export default {

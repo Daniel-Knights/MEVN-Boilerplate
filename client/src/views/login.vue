@@ -23,16 +23,6 @@
                 />
             </div>
             <input type="submit" value="Login" />
-            <span
-                v-if="error"
-                class="alert-danger  auth-alert"
-                v-html="error"
-            ></span>
-            <span
-                v-if="getAuthMessage"
-                class="alert-danger  auth-alert"
-                v-html="getAuthMessage"
-            ></span>
         </form>
     </div>
 </template>
@@ -64,47 +54,28 @@ export default {
             credentials: {
                 email: "",
                 password: ""
-            },
-            error: ""
+            }
         };
     },
 
-    computed: {
-        ...mapGetters(["getAuthMessage"])
-    },
-
     methods: {
-        ...mapActions(["login", "changeAuthMessage"]),
+        ...mapActions(["login"]),
         loginHandler() {
             const email = this.credentials.email;
             const password = this.credentials.password;
 
-            this.error = "";
-            this.changeAuthMessage("");
-
             // Simple validation
             if (email === "" || password === "")
-                return (this.error = "Please fill required fields");
+                return this.$toasted.show("Please fill required fields");
             if (!email.includes("@") || !email.includes("."))
-                return (this.error = "Invalid email");
+                return this.$toasted.show("Invalid email");
             if (password.length < 6)
-                return (this.error = "Password must be at least 6 characters");
+                return this.$toasted.show(
+                    "Password must be at least 6 characters"
+                );
 
             this.login(this.credentials);
         }
-    },
-
-    beforeDestroy() {
-        this.changeAuthMessage("");
     }
 };
 </script>
-
-<style scoped>
-.auth-alert {
-    margin: 10px auto;
-    padding: 5px 0;
-    width: 300px;
-    border-radius: 5px;
-}
-</style>

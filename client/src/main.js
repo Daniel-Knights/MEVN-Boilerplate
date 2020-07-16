@@ -2,7 +2,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import functions from "./functions";
+import "./functions";
 
 import Axios from "axios";
 import VueAxios from "vue-axios";
@@ -10,6 +10,7 @@ import VueAxios from "vue-axios";
 import vOutsideEvents from "vue-outside-events";
 import VueLazyLoad from "vue-lazyload";
 import VueScrollactive from "vue-scrollactive";
+import Toasted from "vue-toasted";
 
 Vue.use(VueAxios, Axios);
 Vue.use(vOutsideEvents);
@@ -24,6 +25,11 @@ Vue.use(VueLazyLoad, {
     }
 });
 Vue.use(VueScrollactive);
+Vue.use(Toasted, {
+    theme: "outline",
+    position: "bottom-right",
+    duration: 5000
+});
 
 // Global variable for accessing the apps name
 Vue.prototype.$appName = "MEVN Boilerplate";

@@ -1,8 +1,32 @@
 @import "variables";
-@import "utilities";
 @import "keyframes";
+@import "mixins";
+
+@import "utilities";
 
 @import "./components/forms";
 @import "./components/pagination";
 
 @import "./responsive/mobile";
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    background-color: $white;
+}
+
+#app {
+    margin-top: 100px;
+    text-align: center;
+    font-family: $font_primary;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: $black;
+}

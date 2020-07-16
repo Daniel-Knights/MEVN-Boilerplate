@@ -9,7 +9,7 @@ A MEVN boilerplate setup with:
  <li>Email</li>
  <li>Validation</li>
  <li>Pagination</li> 
-</ul> 
+</ul>
 
 Includes Heroku deployment walkthrough.
 
@@ -33,7 +33,7 @@ Create a `.env` file in your root directory and add:
 
 ```txt
 MONGO_URI=<your-mongodb-connection-string>
-JWT_SECRET=sl_myJwtSecret
+JWT_SECRET=<hex_string_from_server.js_function>
 EMAIL_ACCOUNT=<your-gmail-account>
 EMAIL_PASSWORD=<your-google-app-password>
 PORT=3000
@@ -95,7 +95,7 @@ vue create client
 
 cd client
 
-npm i axios vue-axios vue-outside-events vue-meta vue-lazyload vue-scrollactive
+npm i axios vue-axios vue-outside-events vue-meta vue-lazyload vue-scrollactive vue-toasted
 ```
 
 # Deploy to Heroku

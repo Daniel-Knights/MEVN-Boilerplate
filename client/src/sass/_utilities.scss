@@ -1,33 +1,4 @@
-* {
-    box-sizing: border-box;
-}
-
-body {
-    position: relative;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    min-height: 100vh;
-    background-color: $white;
-}
-
-#app {
-    margin-top: 100px;
-    text-align: center;
-    font-family: $font_primary;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: $black;
-}
-
-// Mixins
-@mixin flex-basic {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-// Utility classes
+/* Utility classes */
 
 .container {
     max-width: 730px;
@@ -35,7 +6,41 @@ body {
     position: relative;
 }
 
-// Defaults
+.loading-ellipsis {
+    position: absolute;
+
+    div {
+        position: absolute;
+        top: 33px;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: $black;
+        animation-timing-function: cubic-bezier(0, 1, 1, 0);
+    }
+
+    div:nth-child(1) {
+        left: 8px;
+        animation: loading-ellipsis1 0.6s infinite;
+    }
+
+    div:nth-child(2) {
+        left: 8px;
+        animation: loading-ellipsis2 0.6s infinite;
+    }
+
+    div:nth-child(3) {
+        left: 32px;
+        animation: loading-ellipsis2 0.6s infinite;
+    }
+
+    div:nth-child(4) {
+        left: 56px;
+        animation: loading-ellipsis3 0.6s infinite;
+    }
+}
+
+/* Defaults */
 
 h2,
 h3,
@@ -58,7 +63,7 @@ a {
     text-decoration: none;
 }
 
-button {
+button:not([type="button"]) {
     cursor: pointer;
     width: 15rem;
     height: 2rem;
@@ -89,25 +94,4 @@ button:hover {
 
 button:active {
     transform: scale(0.99);
-}
-
-// Error handling
-
-.alert-danger {
-    border: 1px solid #ff5b5f;
-    background-color: #ffc5c1;
-}
-
-.alert-success {
-    border: 1px solid #6eff5b !important;
-}
-
-.alert-submit-success {
-    background-color: $primary !important;
-    color: $white !important;
-}
-
-.alert-submit-danger {
-    background-color: $black !important;
-    color: $white !important;
 }
