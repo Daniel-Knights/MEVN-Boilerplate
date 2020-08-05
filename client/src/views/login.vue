@@ -35,17 +35,7 @@ export default {
 
     metaInfo() {
         return {
-            title: "Login",
-            meta: [
-                {
-                    name: "description",
-                    content: `The login page of ${this.$appName}`
-                },
-                {
-                    property: "og:description",
-                    content: `The login page of ${this.$appName}`
-                }
-            ]
+            title: "Login"
         };
     },
 

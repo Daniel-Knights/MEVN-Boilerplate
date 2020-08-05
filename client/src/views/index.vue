@@ -1,32 +1,22 @@
 <template>
-	<Posts />
+    <Posts />
 </template>
 
 <script>
 import Posts from "../components/Posts";
 
 export default {
-	name: "index",
+    name: "index",
 
-	metaInfo() {
-		return {
-			title: "Home",
-			meta: [
-				{
-					name: "description",
-					content: `The home page of ${this.$appName}`,
-				},
-				{
-					property: "og:description",
-					content: `The home page of ${this.$appName}`,
-				},
-			],
-		};
-	},
+    metaInfo() {
+        return {
+            title: "Home"
+        };
+    },
 
-	components: {
-		Posts,
-	},
+    components: {
+        Posts
+    }
 };
 </script>
 

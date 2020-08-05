@@ -17,17 +17,7 @@ export default {
 
     metaInfo() {
         return {
-            title: "Photos",
-            meta: [
-                {
-                    name: "description",
-                    content: `The photo page of ${this.$appName}`
-                },
-                {
-                    property: "og:description",
-                    content: `The photo page of ${this.$appName}`
-                }
-            ]
+            title: "Photos"
         };
     },
 

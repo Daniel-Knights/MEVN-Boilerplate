@@ -45,17 +45,7 @@ export default {
 
     metaInfo() {
         return {
-            title: "Signup",
-            meta: [
-                {
-                    name: "description",
-                    content: `The signup page of ${this.$appName}`
-                },
-                {
-                    property: "og:description",
-                    content: `The signup page of ${this.$appName}`
-                }
-            ]
+            title: "Signup"
         };
     },
 

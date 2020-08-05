@@ -85,17 +85,7 @@ export default {
 
     metaInfo() {
         return {
-            title: "Contact",
-            meta: [
-                {
-                    name: "description",
-                    content: `The contact page of ${this.$appName}`
-                },
-                {
-                    property: "og:description",
-                    content: `The contact page of ${this.$appName}`
-                }
-            ]
+            title: "Contact"
         };
     },
 
