@@ -15,9 +15,7 @@ export default {
 
 <style scoped lang="scss">
 #loading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex-basic;
     position: fixed;
     width: 100%;
     height: 100vh;

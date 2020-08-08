@@ -26,7 +26,7 @@ app.use(
 const hexStr = require("crypto")
     .randomBytes(64)
     .toString("hex");
-console.log(hexStr);
+console.log("JWT Secret:", hexStr);
 
 // Routes
 app.use("/api/posts", require("./routes/posts"));
