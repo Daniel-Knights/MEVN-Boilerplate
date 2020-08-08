@@ -147,7 +147,7 @@ header {
 
     #smooth-scroll-svg {
         position: absolute;
-        margin-top: -11px;
+        margin-top: -22px;
         max-height: 50%;
         transform: rotateY(30deg);
         opacity: 0;
