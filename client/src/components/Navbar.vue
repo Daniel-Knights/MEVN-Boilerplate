@@ -103,9 +103,7 @@ export default {
 
 <style scoped lang="scss">
 header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include flex-spread-x;
     width: 100%;
     height: 50px;
     position: fixed;

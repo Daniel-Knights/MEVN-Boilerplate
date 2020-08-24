@@ -1,7 +1,5 @@
 .pages {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    @include flex-spread-x;
     margin: 10px auto;
     width: 300px;
     user-select: none;

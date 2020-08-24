@@ -53,9 +53,7 @@ export default {
 <style scoped lang="scss">
 .img-container {
     .images {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
+        @include flex-resize;
         margin: 20px;
 
         .image {
