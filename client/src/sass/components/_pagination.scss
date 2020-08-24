@@ -10,7 +10,7 @@
 
     .pagination {
         cursor: pointer;
-        @include flex-basic;
+        @include flex-center;
         height: 30px;
         width: 30px;
         transition: background-color 0.2s;
@@ -25,7 +25,7 @@
 
         .page,
         input {
-            @include flex-basic;
+            @include flex-center;
             width: 30px;
             height: 30px;
         }

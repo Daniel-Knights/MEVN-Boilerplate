@@ -15,7 +15,7 @@ export default {
 
 <style scoped lang="scss">
 #loading {
-    @include flex-basic;
+    @include flex-center;
     position: fixed;
     width: 100%;
     height: 100vh;

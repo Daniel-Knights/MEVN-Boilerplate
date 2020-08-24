@@ -141,7 +141,7 @@ header {
 }
 
 #smooth-scroll-svg-container {
-    @include flex-basic;
+    @include flex-center;
 
     #smooth-scroll-svg {
         position: absolute;

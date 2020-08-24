@@ -2,6 +2,8 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
+import "vue-dk-lib";
+import "vue-dk-lib/dist/dkLib.css";
 import "./functions";
 
 import Axios from "axios";
@@ -17,12 +19,7 @@ Vue.use(vOutsideEvents);
 Vue.use(VueLazyLoad, {
     attempt: 1,
     error: require("./assets/img/svg/error.svg"),
-    preLoad: 1.9,
-    observer: true,
-    observerOptions: {
-        rootMargin: "0px",
-        threshold: 0.1
-    }
+    preLoad: 2
 });
 Vue.use(VueScrollactive);
 Vue.use(Toasted, {

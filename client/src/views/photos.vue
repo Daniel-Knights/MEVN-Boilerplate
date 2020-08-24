@@ -53,7 +53,7 @@ export default {
 <style scoped lang="scss">
 .img-container {
     .images {
-        @include flex-resize;
+        @include flex-responsive;
         margin: 20px;
 
         .image {
