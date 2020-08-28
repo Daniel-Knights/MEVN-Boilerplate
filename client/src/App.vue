@@ -62,9 +62,7 @@ export default {
         this.loading = true;
         this.checkToken();
 
-        window.addEventListener("load", () => {
-            this.loading = false;
-        });
+        window.addEventListener("load", () => (this.loading = false));
     }
 };
 </script>
