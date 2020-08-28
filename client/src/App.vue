@@ -64,13 +64,6 @@ export default {
 
         window.addEventListener("load", () => {
             this.loading = false;
-
-            // Lazy load Fontawesome kit
-            const script = document.createElement("script");
-            script.src = "https://kit.fontawesome.com/6994a6ed7d.js";
-            script.crossOrigin = "anonymous";
-
-            document.getElementsByTagName("head")[0].appendChild(script);
         });
     }
 };
