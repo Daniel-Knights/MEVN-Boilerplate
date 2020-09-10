@@ -9,13 +9,13 @@
 
 <script>
 export default {
-    name: "Loading"
+    name: 'Loading',
 };
 </script>
 
 <style scoped lang="scss">
 #loading {
-    @include flex-center;
+    @include flex-x(center, center);
     position: fixed;
     width: 100%;
     height: 100vh;
@@ -32,10 +32,10 @@ export default {
             opacity: 1;
             border-radius: 50%;
             animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
-        }
 
-        div:nth-child(2) {
-            animation-delay: -0.5s;
+            &:nth-child(2) {
+                animation-delay: -0.5s;
+            }
         }
 
         @keyframes lds-ripple {

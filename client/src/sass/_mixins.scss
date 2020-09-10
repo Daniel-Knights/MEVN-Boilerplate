@@ -1,32 +1,20 @@
-@mixin flex-center {
+@mixin flex-x($spread, $align: false) {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    @if $spread {
+        justify-content: #{$spread};
+    }
+    @if $align {
+        align-items: #{$align};
+    }
 }
-@mixin flex-column {
+@mixin flex-y($spread, $align: false) {
     display: flex;
-    flex-direction: column;
-}
-@mixin flex-spread-x {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-@mixin flex-spread-y {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
-}
-@mixin flex-even-x {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-}
-@mixin flex-even-y {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+    @if $spread {
+        justify-content: #{$spread};
+    }
+    @if $align {
+        align-items: #{$align};
+    }
     flex-direction: column;
 }
 @mixin flex-responsive {
@@ -36,7 +24,7 @@
     flex-wrap: wrap;
 }
 
-@mixin scrim-gradient($startColor: "black", $direction: "to bottom") {
+@mixin scrim-gradient($startColor: 'black', $direction: 'to bottom') {
     $scrimCoordinates: (
         0: 1,
         19: 0.738,
@@ -50,7 +38,7 @@
         91: 0.021,
         95.2: 0.008,
         98.2: 0.002,
-        100: 0
+        100: 0,
     );
 
     $hue: hue($startColor);
@@ -59,8 +47,7 @@
     $stops: ();
 
     @each $colorStop, $alphaValue in $scrimCoordinates {
-        $stop: hsla($hue, $saturation, $lightness, $alphaValue)
-            percentage($colorStop/100);
+        $stop: hsla($hue, $saturation, $lightness, $alphaValue) percentage($colorStop/100);
         $stops: append($stops, $stop, comma);
     }
 

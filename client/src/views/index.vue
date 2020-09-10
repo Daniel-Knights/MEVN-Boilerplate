@@ -3,20 +3,18 @@
 </template>
 
 <script>
-import Posts from "../components/Posts";
+import Posts from '../components/Posts';
 
 export default {
-    name: "index",
+    name: 'index',
 
     metaInfo() {
         return {
-            title: "Home"
+            title: 'Home',
         };
     },
 
-    components: {
-        Posts
-    }
+    components: { Posts },
 };
 </script>
 

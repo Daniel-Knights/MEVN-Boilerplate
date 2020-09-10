@@ -2,18 +2,10 @@
     <header>
         <nav>
             <router-link to="/">Home</router-link>
-            <router-link v-if="!getAuthenticated" to="/login"
-                >Login</router-link
-            >
-            <router-link v-if="!getAuthenticated" to="/signup"
-                >Signup</router-link
-            >
-            <router-link v-if="getAuthenticated" to="/" @click.native="logout"
-                >Logout</router-link
-            >
-            <router-link v-if="getAuthenticated" to="/photos"
-                >Photos</router-link
-            >
+            <router-link v-if="!getAuthenticated" to="/login">Login</router-link>
+            <router-link v-if="!getAuthenticated" to="/signup">Signup</router-link>
+            <router-link v-if="getAuthenticated" to="/" @click.native="logout">Logout</router-link>
+            <router-link v-if="getAuthenticated" to="/photos">Photos</router-link>
             <router-link to="/contact">Contact</router-link>
         </nav>
         <scrollactive
@@ -35,11 +27,7 @@
             </a>
             <div id="smooth-scroll-svg-container">
                 <svg id="smooth-scroll-svg" width="120" height="30">
-                    <rect
-                        width="120"
-                        height="30"
-                        fill="rgba(255,255,255,0.5)"
-                    />
+                    <rect width="120" height="30" fill="rgba(255,255,255,0.5)" />
                 </svg>
             </div>
         </scrollactive>
@@ -47,63 +35,62 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
-    name: "Navbar",
+    name: 'Navbar',
 
     data() {
         return {
-            navSelected: "nav-loaded"
+            navSelected: 'nav-loaded',
         };
     },
 
     computed: {
-        ...mapGetters(["getAuthenticated"])
+        ...mapGetters(['getAuthenticated']),
     },
 
     methods: {
-        ...mapActions(["logout"]),
+        ...mapActions(['logout']),
         svgMouseover() {
-            const svg = document.getElementById("smooth-scroll-svg");
+            const svg = document.getElementById('smooth-scroll-svg');
 
-            svg.style.transform = "rotateY(0deg)";
-            svg.style.maxHeight = "100%";
-            svg.style.opacity = "1";
+            svg.style.transform = 'rotateY(0deg)';
+            svg.style.maxHeight = '100%';
+            svg.style.opacity = '1';
         },
         svgMouseout() {
-            const svg = document.getElementById("smooth-scroll-svg");
+            const svg = document.getElementById('smooth-scroll-svg');
 
-            svg.style.transform = "rotateY(30deg)";
-            svg.style.maxHeight = "50%";
-            svg.style.opacity = "0";
-        }
+            svg.style.transform = 'rotateY(30deg)';
+            svg.style.maxHeight = '50%';
+            svg.style.opacity = '0';
+        },
     },
 
     mounted() {
-        const mediaQuery = window.matchMedia("(max-width: 700px)");
-        const scrollLink = document.getElementById("smooth-scroll-nav");
-        const svg = document.getElementById("smooth-scroll-svg");
+        const mediaQuery = window.matchMedia('(max-width: 700px)');
+        const scrollLink = document.getElementById('smooth-scroll-nav');
+        const svg = document.getElementById('smooth-scroll-svg');
 
-        svg.style.width =
-            svg.parentNode.previousSibling.offsetWidth + 20 + "px";
+        svg.style.width = svg.parentNode.previousSibling.offsetWidth + 20 + 'px';
 
         if (mediaQuery.matches) {
-            svg.style.display = "none";
-            scrollLink.innerText = "Scroll";
+            svg.style.display = 'none';
+            scrollLink.innerText = 'Scroll';
         } else {
-            svg.style.display = "block";
-            scrollLink.innerText = "Smooth Scroll";
+            svg.style.display = 'block';
+            scrollLink.innerText = 'Smooth Scroll';
         }
 
-        this.navSelected = "nav-selected";
-    }
+        this.navSelected = 'nav-selected';
+    },
 };
 </script>
 
 <style scoped lang="scss">
 header {
-    @include flex-spread-x;
+    @include flex-x(space-between, center);
     width: 100%;
     height: 50px;
     position: fixed;
@@ -112,9 +99,7 @@ header {
     background: linear-gradient(to right, $black, $light);
 
     nav {
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
+        @include flex-x(space-evenly, center);
         width: 40%;
         height: 100%;
 
@@ -123,15 +108,16 @@ header {
             color: $white;
             transition: color 0.2s;
             z-index: 1;
-        }
 
-        a:hover {
-            color: $light;
+            &:hover {
+                color: $light;
+            }
         }
     }
 
     .scrollactive-nav {
         margin: 0 50px;
+
         #smooth-scroll-nav {
             position: relative;
             transition: color 0.2s;
@@ -141,7 +127,7 @@ header {
 }
 
 #smooth-scroll-svg-container {
-    @include flex-center;
+    @include flex-x(center, center);
 
     #smooth-scroll-svg {
         position: absolute;

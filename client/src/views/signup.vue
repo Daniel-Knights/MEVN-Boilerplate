@@ -3,33 +3,33 @@
         <h3>Signup</h3>
         <form @submit.prevent="signupHandler()">
             <div class="form-group">
-                <label for="name">Name</label>
+                <label for="su-name">Name</label>
                 <input
                     v-model="credentials.name"
                     @focus="$hideLabel($event)"
                     @focusout="$showLabel($event)"
                     type="text"
-                    name="name"
+                    id="su-name"
                 />
             </div>
             <div class="form-group">
-                <label for="email">Email</label>
+                <label for="su-email">Email</label>
                 <input
                     v-model="credentials.email"
                     @focus="$hideLabel($event)"
                     @focusout="$showLabel($event)"
                     type="text"
-                    name="email"
+                    id="su-email"
                 />
             </div>
             <div class="form-group">
-                <label for="password">Password</label>
+                <label for="su-password">Password</label>
                 <input
                     v-model="credentials.password"
                     @focus="$hideLabel($event)"
                     @focusout="$showLabel($event)"
                     type="password"
-                    name="password"
+                    id="su-password"
                 />
             </div>
             <input type="submit" value="Signup" />
@@ -38,46 +38,42 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from "vuex";
+import { mapActions } from 'vuex';
 
 export default {
-    name: "signup",
+    name: 'signup',
 
     metaInfo() {
         return {
-            title: "Signup"
+            title: 'Signup',
         };
     },
 
     data() {
         return {
             credentials: {
-                name: "",
-                email: "",
-                password: ""
-            }
+                name: '',
+                email: '',
+                password: '',
+            },
         };
     },
 
     methods: {
-        ...mapActions(["signup"]),
+        ...mapActions(['signup']),
         signupHandler() {
-            const name = this.credentials.name;
-            const email = this.credentials.email;
-            const password = this.credentials.password;
+            const { name, email, password } = this.credentials;
 
             // Simple validation
-            if (email === "" || password === "" || name === "")
-                return this.$toasted.show("Please fill required fields");
-            if (!email.includes("@") || !email.includes("."))
-                return this.$toasted.show("Invalid email");
+            if (email === '' || password === '' || name === '')
+                return this.$toasted.show('Please fill required fields');
+            if (!email.includes('@') || !email.includes('.'))
+                return this.$toasted.show('Invalid email');
             if (password.length < 6)
-                return this.$toasted.show(
-                    "Password must be at least 6 characters"
-                );
+                return this.$toasted.show('Password must be at least 6 characters');
 
             this.signup(this.credentials);
-        }
-    }
+        },
+    },
 };
 </script>

@@ -20,8 +20,8 @@ form {
             transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
         }
 
-        input[type="text"],
-        input[type="password"],
+        input[type='text'],
+        input[type='password'],
         textarea {
             width: 100%;
             padding: 10px 20px;
@@ -32,8 +32,8 @@ form {
         }
     }
 
-    input[type="submit"],
-    button[type="button"] {
+    input[type='submit'],
+    button[type='button'] {
         cursor: pointer;
         padding: 10px 20px;
         margin: 8px 0;
@@ -45,17 +45,14 @@ form {
         border-radius: 4px;
         transition: background-color 0.1s, color 0.1s;
         box-shadow: 1px 1px 10px rgba($black, 0.2);
-    }
 
-    input[type="submit"]:hover,
-    button[type="button"]:hover {
-        color: $white;
-        background-color: lighten($black, 10%);
-    }
-
-    input[type="submit"]:active,
-    button[type="button"]:active {
-        transform: scale(0.99);
+        &:hover {
+            color: $white;
+            background-color: lighten($black, 10%);
+        }
+        &:active {
+            transform: scale(0.99);
+        }
     }
 
     .loading-ellipsis {

@@ -1,15 +1,15 @@
-import Vue from "vue";
+import Vue from 'vue';
 
 // Format date/time to BST
 export const dateFormat = (Vue.prototype.$dateFormat = function(string) {
     return (
         string.substring(11, 16) +
-        " " +
+        ' ' +
         string
-            .split("T")[0]
-            .split("-")
+            .split('T')[0]
+            .split('-')
             .reverse()
-            .join("/")
+            .join('/')
     );
 });
 
@@ -27,9 +27,7 @@ export const randomize = (Vue.prototype.$randomize = function(items) {
 });
 
 // Convert milliseconds to mm:ss
-export const convertMilliseconds = (Vue.prototype.$convertMilliseconds = function(
-    ms
-) {
+export const convertMilliseconds = (Vue.prototype.$convertMilliseconds = function(ms) {
     let h, m, s;
     h = Math.floor((ms * 1000) / 1000 / 60 / 60);
     m = Math.floor(((ms * 1000) / 1000 / 60 / 60 - h) * 60);
@@ -46,22 +44,22 @@ export const convertMilliseconds = (Vue.prototype.$convertMilliseconds = functio
 export const hideLabel = (Vue.prototype.$hideLabel = function(e) {
     const label = e.target.previousSibling;
 
-    label.style.opacity = "0";
-    label.style.transform = "scale(0.8)";
+    label.style.opacity = '0';
+    label.style.transform = 'scale3d(0.8, 0.8, 0.8)';
 });
 
 // Show form label on input focusout
 export const showLabel = (Vue.prototype.$showLabel = function(e) {
-    if (e.target.value !== "") return;
+    if (e.target.value !== '') return;
 
     const label = e.target.previousSibling;
 
-    label.style.opacity = "1";
-    label.style.transform = "scale(1)";
+    label.style.opacity = '1';
+    label.style.transform = 'scale3d(1, 1, 1)';
 });
 
 export const isNumber = (Vue.prototype.$isNumber = function(e) {
-    const keysAllowed = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+    const keysAllowed = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
     const keyPressed = e.key;
     if (!keysAllowed.includes(keyPressed)) {
         e.preventDefault();
@@ -69,15 +67,11 @@ export const isNumber = (Vue.prototype.$isNumber = function(e) {
 });
 
 export const inputPrice = (Vue.prototype.$inputPrice = function(e) {
-    if (
-        (e.keyCode < 48 || e.keyCode > 57) &&
-        e.keyCode !== 8 &&
-        e.keyCode !== 190
-    ) {
+    if ((e.keyCode < 48 || e.keyCode > 57) && e.keyCode !== 8 && e.keyCode !== 190) {
         e.preventDefault();
-    } else if (price.includes(".") && e.keyCode === 190) {
+    } else if (price.includes('.') && e.keyCode === 190) {
         e.preventDefault();
-    } else if (price === "") {
-        price = "£" + e.target.value;
+    } else if (price === '') {
+        price = '£' + e.target.value;
     }
 });

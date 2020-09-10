@@ -10,68 +10,66 @@
 </template>
 
 <script>
-import Axios from "axios";
+import Axios from 'axios';
 
 export default {
-    name: "photos",
+    name: 'photos',
 
     metaInfo() {
         return {
-            title: "Photos"
+            title: 'Photos',
         };
     },
 
     data() {
         return {
-            photos: []
+            photos: [],
         };
     },
 
     methods: {
         async fetchPhotos() {
             const photos = await Axios.get(
-                "https://pixabay.com/api/?key=<YOUR_API_KEY>&q=animals&per_page=100"
+                'https://pixabay.com/api/?key=<YOUR_API_KEY>&q=animals&per_page=100'
             );
 
             photos.data.hits.forEach(i => {
                 let imageObj = {
                     src: i.webformatURL,
-                    loading: i.previewURL
+                    loading: i.previewURL,
                 };
 
                 this.photos.push(imageObj);
             });
-        }
+        },
     },
 
     created() {
         this.fetchPhotos();
-    }
+    },
 };
 </script>
 
 <style scoped lang="scss">
-.img-container {
-    .images {
-        @include flex-responsive;
-        margin: 20px;
+.img-container .images {
+    @include flex-responsive;
+    margin: 20px;
 
-        .image {
+    .image {
+        height: 300px;
+        min-width: 300px;
+
+        img[lazy='loading'] {
+            filter: blur(10px) grayscale(100%);
+        }
+
+        img {
             height: 300px;
             min-width: 300px;
-
-            img[lazy="loading"] {
-                filter: blur(10px) grayscale(100%);
-            }
-
-            img {
-                height: 300px;
-                min-width: 300px;
-                object-fit: cover;
-                filter: blur(0);
-                transition: filter 0.2s;
-                overflow: hidden;
-            }
+            object-fit: cover;
+            filter: blur(0);
+            transition: filter 0.2s;
+            overflow: hidden;
         }
     }
 }

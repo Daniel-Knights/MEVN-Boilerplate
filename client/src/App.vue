@@ -2,7 +2,9 @@
     <div id="app">
         <Navbar />
         <Loading v-if="loading" />
-        <router-view></router-view>
+        <keep-alive include="contact,login,signup">
+            <router-view></router-view>
+        </keep-alive>
         <scrollactive
             :offset="0"
             :duration="1000"
@@ -17,53 +19,52 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions } from 'vuex';
 
-import Navbar from "./components/Navbar";
-import Loading from "./components/Loading";
+import Navbar from './components/Navbar';
+import Loading from './components/Loading';
 
 export default {
-    name: "App",
+    name: 'App',
 
     metaInfo() {
         return {
-            title: "MEVN Boilerplate",
-            titleTemplate: "%s | MEVN Boilerplate"
+            title: 'MEVN Boilerplate',
+            titleTemplate: '%s | MEVN Boilerplate',
         };
     },
 
     components: {
         Navbar,
-        Loading
+        Loading,
     },
 
     data() {
         return {
-            loading: true
+            loading: true,
         };
     },
 
     methods: {
-        ...mapActions(["attempt", "logout"]),
+        ...mapActions(['attempt', 'logout']),
         checkToken() {
             // Seven day JWT TTL
             const date = new Date();
-            const auth = JSON.parse(localStorage.getItem("auth"));
+            const auth = JSON.parse(localStorage.getItem('auth'));
 
             if (auth === null) return;
-
             if (date.getTime() > auth.ttl) return this.logout();
 
             this.attempt();
-        }
+        },
     },
 
     created() {
         this.loading = true;
         this.checkToken();
 
-        window.addEventListener("load", () => (this.loading = false));
-    }
+        window.addEventListener('load', () => (this.loading = false));
+    },
 };
 </script>
 
@@ -73,9 +74,9 @@ export default {
     margin-top: 10000px !important;
     font-size: 20px;
     transition: color 0.2s;
-}
 
-#smooth-scroll:hover {
-    color: lighten($black, 50%);
+    &:hover {
+        color: lighten($black, 50%);
+    }
 }
 </style>

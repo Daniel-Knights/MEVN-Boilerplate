@@ -17,26 +17,23 @@
         border-radius: 50%;
         background: $black;
         animation-timing-function: cubic-bezier(0, 1, 1, 0);
-    }
 
-    div:nth-child(1) {
-        left: 8px;
-        animation: loading-ellipsis1 0.6s infinite;
-    }
-
-    div:nth-child(2) {
-        left: 8px;
-        animation: loading-ellipsis2 0.6s infinite;
-    }
-
-    div:nth-child(3) {
-        left: 32px;
-        animation: loading-ellipsis2 0.6s infinite;
-    }
-
-    div:nth-child(4) {
-        left: 56px;
-        animation: loading-ellipsis3 0.6s infinite;
+        &:nth-child(1) {
+            left: 8px;
+            animation: loading-ellipsis1 0.6s infinite;
+        }
+        &:nth-child(2) {
+            left: 8px;
+            animation: loading-ellipsis2 0.6s infinite;
+        }
+        &:nth-child(3) {
+            left: 32px;
+            animation: loading-ellipsis2 0.6s infinite;
+        }
+        &:nth-child(4) {
+            left: 56px;
+            animation: loading-ellipsis3 0.6s infinite;
+        }
     }
 }
 
@@ -63,7 +60,7 @@ a {
     text-decoration: none;
 }
 
-button:not([type="button"]) {
+button:not([type='button']) {
     cursor: pointer;
     width: 15rem;
     height: 2rem;
@@ -91,7 +88,6 @@ textarea {
 button:hover {
     background-color: lighten($black, 30%);
 }
-
 button:active {
     transform: scale(0.99);
 }
