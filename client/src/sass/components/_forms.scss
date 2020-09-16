@@ -32,6 +32,10 @@ form {
         }
     }
 
+    .form-submit {
+        position: relative;
+    }
+
     input[type='submit'],
     button[type='button'] {
         cursor: pointer;
@@ -57,7 +61,35 @@ form {
 
     .loading-ellipsis {
         position: absolute;
-        transform: translate(213px, -67px);
+        left: 50%;
+        transform: translate(-37px, -68px);
+
+        div {
+            position: absolute;
+            top: 33px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: $black;
+            animation-timing-function: cubic-bezier(0, 1, 1, 0);
+
+            &:nth-child(1) {
+                left: 8px;
+                animation: loading-ellipsis1 0.6s infinite;
+            }
+            &:nth-child(2) {
+                left: 8px;
+                animation: loading-ellipsis2 0.6s infinite;
+            }
+            &:nth-child(3) {
+                left: 32px;
+                animation: loading-ellipsis2 0.6s infinite;
+            }
+            &:nth-child(4) {
+                left: 56px;
+                animation: loading-ellipsis3 0.6s infinite;
+            }
+        }
     }
 }
 

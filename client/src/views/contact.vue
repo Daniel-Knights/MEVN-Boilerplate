@@ -59,19 +59,21 @@
                     }"
                 ></textarea>
             </div>
-            <input
-                type="submit"
-                :value="successMessage"
-                :class="{
-                    'alert-submit-success': success,
-                    'alert-submit-danger': success === false,
-                }"
-            />
-            <div v-if="loading" class="loading-ellipsis">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+            <div class="form-submit">
+                <input
+                    type="submit"
+                    :value="successMessage"
+                    :class="{
+                        'alert-submit-success': success,
+                        'alert-submit-danger': success === false,
+                    }"
+                />
+                <div v-if="loading" class="loading-ellipsis">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
             </div>
         </form>
     </div>
