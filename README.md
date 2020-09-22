@@ -48,7 +48,7 @@ VUE_APP_NODE_ENV=development
 In `server/routes/api/auth.js` and `server/routes/api/posts.js`, inside the collection functions, replace "vue_express" with your database name:
 
 ```js
-return connection.db("vue_express").collection("users");
+return connection.db('vue_express').collection('users');
 ```
 
 For the photo page to work, go to [Pixabay](https://pixabay.com/accounts/register/) and register for an account. Then go to the [docs page](https://pixabay.com/api/docs/), copy your given API key and replace `<API_KEY>` in the Axios request of the photos page.
@@ -95,7 +95,7 @@ vue create client
 
 cd client
 
-npm i axios vue-axios vue-outside-events vue-meta vue-lazyload vue-scrollactive vue-toasted
+npm i axios vue-outside-events vue-meta vue-lazyload vue-scrollactive vue-toasted
 ```
 
 # Deploy to Heroku

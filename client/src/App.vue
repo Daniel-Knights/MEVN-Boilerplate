@@ -1,7 +1,9 @@
 <template>
     <div id="app">
         <Navbar />
-        <Loading v-if="loading" />
+        <transition name="loading">
+            <Loading v-if="loading" />
+        </transition>
         <keep-alive include="contact,login,signup">
             <router-view></router-view>
         </keep-alive>
@@ -69,6 +71,12 @@ export default {
 </script>
 
 <style lang="scss">
+.loading-leave-active,
+.loading-leave-to {
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
 #smooth-scroll {
     display: block;
     margin-top: 10000px !important;

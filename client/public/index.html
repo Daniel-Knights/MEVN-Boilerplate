@@ -4,6 +4,8 @@
         <meta charset="utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
 
         <!-- Open graph -->
         <meta property="og:url" content="http://localhost:8080" />
@@ -15,25 +17,21 @@
         />
         <meta property="og:image" content="<%= BASE_URL %>favicon.ico" />
 
-        <link rel="icon" href="<%= BASE_URL %>favicon.ico" />
         <!-- Styles -->
-        <link rel="stylesheet" href="css/app.min.css" />
+        <link rel="stylesheet" href="css/app.min.css" type="text/css" />
         <script src="https://kit.fontawesome.com/6994a6ed7d.js"></script>
     </head>
     <body>
         <noscript>
             <strong
-                >We're sorry but MEVN Boilerplate doesn't work properly without
-                JavaScript enabled. Please enable it to continue.</strong
+                >We're sorry but MEVN Boilerplate doesn't work properly without JavaScript enabled.
+                Please enable it to continue.</strong
             >
         </noscript>
         <div id="app"></div>
 
         <!-- Polyfills -->
-        <script
-            crossorigin="anonymous"
-            src="https://polyfill.io/v3/polyfill.min.js"
-        ></script>
+        <script crossorigin="anonymous" src="https://polyfill.io/v3/polyfill.min.js"></script>
         <!-- JavaScript -->
     </body>
 </html>

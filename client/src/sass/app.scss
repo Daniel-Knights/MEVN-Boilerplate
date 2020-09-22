@@ -1,13 +1,13 @@
-@import "variables";
-@import "keyframes";
-@import "mixins";
+@import 'variables';
+@import 'keyframes';
+@import 'mixins';
 
-@import "utilities";
+@import 'utilities';
 
-@import "./components/forms";
-@import "./components/pagination";
+@import './components/forms';
+@import './components/pagination';
 
-@import "./responsive/mobile";
+@import './responsive/mobile';
 
 * {
     box-sizing: border-box;
@@ -25,7 +25,7 @@ body {
 #app {
     margin-top: 100px;
     text-align: center;
-    font-family: $font_primary;
+    font: clamp(0.9rem, 1.5vw, 1.1rem) $font_primary;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: $black;
