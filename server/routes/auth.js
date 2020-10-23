@@ -1,8 +1,8 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-const auth = require('../middleware/auth');
 const ObjectID = require('mongodb').ObjectID;
+const auth = require('../middleware/auth');
 
 const router = express.Router();
 
@@ -19,13 +19,33 @@ async function usersCollection() {
 router.get('/user', auth, async (req, res) => {
     const users = await usersCollection();
 
+    if (!req.user.id)
+        res.status(400).json({
+            success: false,
+            msg: 'Please provide an ID',
+        });
+
     const user = await users
         .find({ _id: ObjectID(req.user.id) })
         // All fields except password
         .project({ password: 0 })
-        .toArray();
+        .toArray()
+        .then(() => {
+            if (!user)
+                return res.status(404).json({
+                    success: false,
+                    msg: 'User does not exist',
+                });
 
-    res.send(user);
+            res.json({ success: true, user });
+        })
+        .catch(err => {
+            res.status(500).json({
+                success: false,
+                msg: 'Unable to fetch user',
+                err: err.message,
+            });
+        });
 });
 
 // Login user
@@ -35,46 +55,63 @@ router.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
-        return res.status(400).json({ msg: 'Please enter all fields' });
+        return res.status(400).json({
+            success: false,
+            msg: 'Please enter all fields',
+        });
     }
 
     // Check for existing user
-    users.findOne({ email }).then(user => {
-        if (!user) {
-            return res.status(400).json({ msg: 'User does not exist' });
-        }
-
-        // Validate password
-        bcrypt.compare(password, user.password).then(isMatch => {
-            if (!isMatch) {
-                return res.status(400).json({ msg: 'Invalid credentials' });
+    users
+        .findOne({ email })
+        .then(user => {
+            if (!user) {
+                return res.status(404).json({
+                    success: false,
+                    msg: 'User does not exist',
+                });
             }
 
-            jwt.sign(
-                { id: user._id },
-                process.env.JWT_SECRET,
-                {
-                    expiresIn: '7d',
-                },
-                (err, token) => {
-                    if (err) throw err;
-
-                    const userInfo = {
-                        id: user._id,
-                        name: user.name,
-                        email: user.email,
-                        created_at: user.created_at,
-                    };
-
-                    res.json({
-                        token,
-                        userInfo,
-                        message: 'User logged in',
-                    }).send();
+            // Validate password
+            bcrypt.compare(password, user.password).then(isMatch => {
+                if (!isMatch) {
+                    return res.status(400).json({
+                        success: false,
+                        msg: 'Invalid credentials',
+                    });
                 }
-            );
+
+                jwt.sign(
+                    { id: user._id },
+                    process.env.JWT_SECRET,
+                    { expiresIn: '7d' },
+                    (err, token) => {
+                        if (err) throw err;
+
+                        const userInfo = {
+                            id: user._id,
+                            name: user.name,
+                            email: user.email,
+                            created_at: user.created_at,
+                        };
+
+                        res.json({
+                            success: true,
+                            token,
+                            userInfo,
+                            message: 'User logged in',
+                        });
+                    }
+                );
+            });
+        })
+        .catch(err => {
+            res.status(500).json({
+                success: false,
+                msg: 'Unable to log in user',
+                err: err.message,
+            });
         });
-    });
 });
 
 // Signup user
@@ -84,12 +121,19 @@ router.post('/signup', async (req, res) => {
     const { name, email, password } = req.body;
 
     if (!name || !email || !password) {
-        return res.status(400).json({ msg: 'Please enter all fields' });
+        return res.status(400).json({
+            success: false,
+            msg: 'Please enter all fields',
+        });
     }
 
     // Check for existing user
     await users.findOne({ email }).then(user => {
-        if (user) return res.status(400).json({ msg: 'User already exists' });
+        if (user)
+            return res.status(400).json({
+                success: false,
+                msg: 'User already exists',
+            });
 
         const newUser = {
             name,
@@ -99,6 +143,8 @@ router.post('/signup', async (req, res) => {
 
         // Create salt and hash
         bcrypt.genSalt(10, (err, salt) => {
+            if (err) throw err;
+
             bcrypt.hash(newUser.password, salt, async (err, hash) => {
                 if (err) throw err;
                 newUser.password = hash;
@@ -114,9 +160,7 @@ router.post('/signup', async (req, res) => {
                         jwt.sign(
                             { id: user.ops[0]._id },
                             process.env.JWT_SECRET,
-                            {
-                                expiresIn: '7d',
-                            },
+                            { expiresIn: '7d' },
                             (err, token) => {
                                 if (err) throw err;
 
@@ -127,19 +171,22 @@ router.post('/signup', async (req, res) => {
                                     created_at: user.ops[0].created_at,
                                 };
 
-                                res.json({
+                                res.status(201).json({
+                                    success: true,
                                     token,
                                     userInfo,
                                     message: 'User signed up successfully',
-                                }).send();
+                                });
                             }
                         );
                     })
                     .catch(err => {
                         console.error(err);
 
-                        res.status(400).json({
+                        res.status(500).json({
+                            success: false,
                             msg: 'Something went wrong, please try again or contact support',
+                            err: err.msg,
                         });
                     });
             });

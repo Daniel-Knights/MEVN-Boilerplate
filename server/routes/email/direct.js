@@ -1,9 +1,9 @@
-const express = require("express");
-const nodemailer = require("nodemailer");
+const express = require('express');
+const nodemailer = require('nodemailer');
 
 const router = express.Router();
 
-router.post("/", (req, res) => {
+router.post('/', (req, res) => {
     const htmlOutput = `
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
@@ -132,13 +132,13 @@ router.post("/", (req, res) => {
     async function main() {
         // create reusable transporter object using the default SMTP transport
         let transporter = nodemailer.createTransport({
-            host: "smtp.gmail.com",
+            host: 'smtp.gmail.com',
             port: 587,
             secure: false, // true for 465, false for other ports
             auth: {
                 user: process.env.EMAIL_ACCOUNT, // generated ethereal user
-                pass: process.env.EMAIL_PASSWORD // generated ethereal password
-            }
+                pass: process.env.EMAIL_PASSWORD, // generated ethereal password
+            },
         });
 
         // send mail with defined transport object
@@ -147,18 +147,21 @@ router.post("/", (req, res) => {
             to: process.env.EMAIL_ACCOUNT, // list of receivers
             subject: `Message from ${req.body.name}`, // Subject line
             text: plaintextOutput, // plain text body
-            html: htmlOutput // html body
+            html: htmlOutput, // html body
         });
 
-        console.log("Message sent: %s", info.messageId);
-        console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+        console.log('Message sent: %s', info.messageId);
+        console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
 
-        res.json({ success: true, msg: "Message Sent" });
+        res.json({ success: true, msg: 'Message Sent' });
     }
 
     main().catch(err => {
-        console.log(err);
-        res.status(400).json({ success: false, msg: "Message Failed to Send" });
+        res.status(400).json({
+            success: false,
+            msg: 'Message Failed to Send',
+            err: err.message,
+        });
     });
 });
 
