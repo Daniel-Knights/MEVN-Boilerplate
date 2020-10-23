@@ -33,10 +33,10 @@ export default {
                 'https://pixabay.com/api/?key=<YOUR_API_KEY>&q=animals&per_page=100'
             );
 
-            photos.data.hits.forEach(i => {
+            photos.data.hits.forEach(photo => {
                 let imageObj = {
-                    src: i.webformatURL,
-                    loading: i.previewURL,
+                    src: photo.webformatURL,
+                    loading: photo.previewURL,
                 };
 
                 this.photos.push(imageObj);

@@ -166,16 +166,16 @@ export default {
             const inputs = this.$el.children[1].elements;
 
             // Prevent labels from reappearing
-            inputs.forEach(i => {
-                if (!i.previousSibling) return;
-                if (i.previousSibling.localName !== 'label') return;
+            inputs.forEach(input => {
+                if (!input.previousSibling) return;
+                if (input.previousSibling.localName !== 'label') return;
 
-                if (i.value !== '') {
-                    i.previousSibling.style.opacity = '0';
-                    i.previousSibling.style.transform = 'scale(0.8)';
+                if (input.value !== '') {
+                    input.previousSibling.style.opacity = '0';
+                    input.previousSibling.style.transform = 'scale(0.8)';
                 } else {
-                    i.previousSibling.style.opacity = '1';
-                    i.previousSibling.style.transform = 'scale(1)';
+                    input.previousSibling.style.opacity = '1';
+                    input.previousSibling.style.transform = 'scale(1)';
                 }
             });
         },

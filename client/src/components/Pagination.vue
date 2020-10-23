@@ -103,11 +103,11 @@ export default {
     methods: {
         selectedPage() {
             let pages = document.querySelectorAll('.page');
-            for (let i of pages) {
-                if (this.get.current_page === Number(i.innerText)) {
-                    i.className = 'page selected';
-                } else i.className = 'page selectable';
-            }
+            pages.forEach(page => {
+                if (this.get.current_page === Number(page.innerText)) {
+                    page.className = 'page selected';
+                } else page.className = 'page selectable';
+            });
         },
         pageOverflow() {
             if (this.get.last_page > 3) this.overflow = true;
