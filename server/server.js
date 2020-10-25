@@ -43,7 +43,7 @@ if (process.env.NODE_ENV === 'production') {
     app.get(/.*/, (req, res) => res.sendFile(__dirname + '/public/index.html'));
 }
 
-// app.use(function forceSecureDomain(req, res, next) {
+// app.use(function forceLiveDomain(req, res, next) {
 //     res.redirect(301, "https://www.example.com");
 
 //     return next();
