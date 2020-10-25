@@ -34,6 +34,16 @@ app.use('/api/posts', require('./routes/posts'));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/direct', require('./routes/email/direct'));
 
+// app.use(function forceLiveDomain(req, res, next) {
+//     const host = req.get('Host');
+
+//     if (host.includes('herokuapp')) {
+//         return res.redirect(301, 'https://www.example.com' + req.originalUrl);
+//     }
+
+//     next();
+// });
+
 // Handle production
 if (process.env.NODE_ENV === 'production') {
     // Static folder
