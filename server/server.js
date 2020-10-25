@@ -44,9 +44,9 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // app.use(function forceLiveDomain(req, res, next) {
-//     res.redirect(301, "https://www.example.com");
+//     res.redirect(301, 'https://www.example.com' + req.originalUrl);
 
-//     return next();
+//     next();
 // });
 
 const port = process.env.PORT || 3000;
