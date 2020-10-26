@@ -13,7 +13,7 @@ const app = express();
 // Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(cors());
+app.use(cors({ origin: 'http://www.example.com' }));
 app.use(morgan('dev'));
 app.use(compression()); // Enable deflate/gzip
 app.use(
