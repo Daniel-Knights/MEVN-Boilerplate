@@ -130,7 +130,7 @@ router.post('/signup', async (req, res) => {
     // Check for existing user
     await users.findOne({ email }).then(user => {
         if (user)
-            return res.status(400).json({
+            return res.status(409).json({
                 success: false,
                 msg: 'User already exists',
             });
@@ -142,54 +142,50 @@ router.post('/signup', async (req, res) => {
         };
 
         // Create salt and hash
-        bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(newUser.password, 10, async (err, hash) => {
             if (err) throw err;
+            newUser.password = hash;
 
-            bcrypt.hash(newUser.password, salt, async (err, hash) => {
-                if (err) throw err;
-                newUser.password = hash;
+            await users
+                .insertOne({
+                    name: newUser.name,
+                    email: newUser.email,
+                    password: newUser.password,
+                    created_at: new Date(),
+                })
+                .then(user => {
+                    jwt.sign(
+                        { id: user.ops[0]._id },
+                        process.env.JWT_SECRET,
+                        { expiresIn: '7d' },
+                        (err, token) => {
+                            if (err) throw err;
 
-                await users
-                    .insertOne({
-                        name: newUser.name,
-                        email: newUser.email,
-                        password: newUser.password,
-                        created_at: new Date(),
-                    })
-                    .then(user => {
-                        jwt.sign(
-                            { id: user.ops[0]._id },
-                            process.env.JWT_SECRET,
-                            { expiresIn: '7d' },
-                            (err, token) => {
-                                if (err) throw err;
+                            const userInfo = {
+                                id: user.ops[0]._id,
+                                name: user.ops[0].name,
+                                email: user.ops[0].email,
+                                created_at: user.ops[0].created_at,
+                            };
 
-                                const userInfo = {
-                                    id: user.ops[0]._id,
-                                    name: user.ops[0].name,
-                                    email: user.ops[0].email,
-                                    created_at: user.ops[0].created_at,
-                                };
+                            res.status(201).json({
+                                success: true,
+                                token,
+                                userInfo,
+                                message: 'User signed up successfully',
+                            });
+                        }
+                    );
+                })
+                .catch(err => {
+                    console.error(err);
 
-                                res.status(201).json({
-                                    success: true,
-                                    token,
-                                    userInfo,
-                                    message: 'User signed up successfully',
-                                });
-                            }
-                        );
-                    })
-                    .catch(err => {
-                        console.error(err);
-
-                        res.status(500).json({
-                            success: false,
-                            msg: 'Something went wrong, please try again or contact support',
-                            err: err.msg,
-                        });
+                    res.status(500).json({
+                        success: false,
+                        msg: 'Something went wrong, please try again or contact support',
+                        err: err.msg,
                     });
-            });
+                });
         });
     });
 });
