@@ -129,11 +129,12 @@ router.post('/signup', async (req, res) => {
 
     // Check for existing user
     await users.findOne({ email }).then(user => {
-        if (user)
+        if (user) {
             return res.status(409).json({
                 success: false,
                 msg: 'User already exists',
             });
+        }
 
         const newUser = {
             name,

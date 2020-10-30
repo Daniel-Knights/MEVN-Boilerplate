@@ -16,14 +16,12 @@ const actions = {
     },
 
     async createPost({ dispatch }, text) {
-        const token = localStorage.getItem('token');
+        const token = JSON.parse(localStorage.getItem('auth')).token;
 
         if (token !== null) {
             await Axios.post(
                 '/posts',
-                {
-                    data: text,
-                },
+                { data: text },
                 {
                     headers: {
                         'Content-type': 'application/json',
@@ -41,7 +39,7 @@ const actions = {
     },
 
     async deletePost({ dispatch }, post) {
-        const token = localStorage.getItem('token');
+        const token = JSON.parse(localStorage.getItem('auth')).token;
 
         if (token !== null) {
             await Axios.delete(`/posts/${post.id}`, {
